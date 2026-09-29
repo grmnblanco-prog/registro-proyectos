@@ -135,6 +135,10 @@
     <label>Descripción breve del proyecto (opcional)</label>
     <textarea id="descripcion" rows="3" placeholder="¿Qué problema resuelve y qué hará el proyecto? (2-3 frases)"></textarea>
 
+    <label>Enlace a convocatoria objetivo (opcional)</label>
+    <input type="url" id="convocatoria" placeholder="https://... — pega el enlace si ya tienes una convocatoria identificada">
+    <div class="hint" style="font-size:11px;margin-top:-12px;">Si no tienes una, se identificará automáticamente al procesar tu proyecto.</div>
+
     <button class="btn btn-primary" onclick="enviar()">Enviar proyecto</button>
 
     <div class="estado-box" id="estado"></div>
@@ -176,6 +180,7 @@ function recolectar() {
   const monto = document.getElementById("monto").value;
   const donante = document.getElementById("donante").value;
   const descripcion = document.getElementById("descripcion").value.trim();
+  const convocatoria = document.getElementById("convocatoria").value.trim();
 
   if (!grupo || !correo || !municipio || !sector) {
     mostrarEstado("err", "Completa los campos obligatorios (*): grupo, correo, municipio y sector.");
@@ -186,7 +191,7 @@ function recolectar() {
     tipo: "proyecto-cooperacion",
     grupo, correo, municipio, sector,
     poblacion, monto: monto ? Number(monto) : null,
-    donante, descripcion,
+    donante, convocatoria: convocatoria || null, descripcion,
     fecha: new Date().toISOString(),
     id: "proy-" + Date.now().toString(36)
   };

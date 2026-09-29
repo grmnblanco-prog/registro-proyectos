@@ -25,7 +25,7 @@ function doPost(e) {
     // Encabezados
     const headers = [
       "id", "fecha", "grupo", "correo", "municipio", "sector",
-      "poblacion", "monto", "donante", "descripcion"
+      "poblacion", "monto", "donante", "convocatoria", "descripcion"
     ];
 
     if (sheet.getLastRow() === 0) {
