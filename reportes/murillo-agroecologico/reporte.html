@@ -77,7 +77,14 @@
   <div class="card">
     <div class="sec-head"><div class="sec-num">0</div><div class="sec-title">Resumen Ejecutivo<small>Lectura en 2 minutos</small></div></div>
     <p>Murillo es un municipio de <b>4.479 habitantes</b> (proyección DANE 2024) en la zona altoandina del departamento del Tolima, categoría 6 (Ley 617), con una vocación económica centrada en la producción agropecuaria, el turismo de naturaleza y la conservación ambiental. Su territorio forma parte de las <b>Áreas de Protección para la Producción de Alimentos (APPA)</b> establecidas por el Ministerio de Agricultura (Resolución 352 de 2024), lo que reconoce su importancia estratégica en la soberanía alimentaria regional.</p>
-    <p>Los productores agroecológicos del municipio han desarrollado prácticas orgánicas de cultivo (hortalizas, tubérculos, hierbas aromáticas, lácteos artesanales) pero enfrentan una <b>capacidad limitada de comercialización</b> que impide traducir la calidad de sus productos en ingresos sostenibles. Las principales barreras son: ausencia de un sistema de certificación participativa que valide su producción orgánica, falta de una plataforma asociativa de acopio y venta, desconocimiento de los mercados institucionales (Programa de Alimentación Escolar, compras públicas) y limitada conectividad para la comercialización digital.</p>
+    <p>El proyecto aborda de manera integral los <b>cuatro eslabones críticos</b> que impiden a las 60 familias campesinas de Murillo convertir su producción orgánica en ingresos sostenibles:</p>
+    <ul>
+      <li><b>Certificación (SPG):</b> sin un Sistema Participativo de Garantías, los productores no pueden acreditar su producción como orgánica ante compradores institucionales o turísticos, quedando relegados a intermediarios que pagan precios de producto convencional.</li>
+      <li><b>Comercialización asociativa:</b> cada familia vende por separado, sin capacidad de negociación, sin centro de acopio que consolide volumen, sin marca colectiva que diferencie el origen agroecológico de la zona APPA.</li>
+      <li><b>Mercados institucionales y locales:</b> el Programa de Alimentación Escolar (PAE) y las compras públicas son canales subutilizados por falta de información, requisitos sanitarios (Invima, ICA) y capacidad de suministro constante; el turismo gastronómico asociado al Parque Nacional Natural Los Nevados es un mercado potencial no aprovechado.</li>
+      <li><b>Comercialización digital:</b> la limitada conectividad rural impide el acceso a plataformas de comercio electrónico; se requiere una solución híbrida (catálogo físico + pedidos por WhatsApp + tienda virtual sincronizable).</li>
+    </ul>
+    <p>Estos cuatro eslabones están interconectados: la certificación SPG habilita la marca colectiva, que a su vez permite acceder a mercados institucionales y turísticos; la plataforma digital y el centro de acopio son la infraestructura que hace operativa la comercialización asociativa.</p>
     <p>El proyecto propone, con un presupuesto de USD 15.000, la implementación de un <b>Sistema Participativo de Garantías (SPG)</b> avalado por el Ministerio de Agricultura, la creación de una <b>plataforma asociativa de comercialización</b> con centro de acopio y tienda virtual, la capacitación en mercados institucionales y la articulación con la ruta turística y gastronómica del Parque Nacional Natural Los Nevados.</p>
     <div class="highlight"><b>Propuesta de valor:</b> en un municipio de 4.479 habitantes donde el 98% de la ejecución del sector agrícola ya se ha cumplido en 2025 (Plan de Desarrollo Municipal), el proyecto apunta al eslabón faltante de la cadena: la comercialización asociativa con valor agregado agroecológico, conectando a 60 familias campesinas con mercados institucionales, turísticos y digitales, por USD 15.000 en 12 meses.</div>
   </div>
@@ -147,6 +154,20 @@
   </div>
 
   <div class="card">
+    <div class="sec-head"><div class="sec-num">R</div><div class="sec-title">Rutas de Acceso a Datos Abiertos<small>Cómo consultar cada fuente</small></div></div>
+    <table>
+      <tr><th>Fuente</th><th>Ruta de acceso</th><th>Formato</th></tr>
+      <tr><td><b>TerriData (DNP)</b></td><td>1. Ir a <a href="https://terridata.dnp.gov.co">terridata.dnp.gov.co</a> → 2. "Fichas territoriales" → 3. Buscar "Murillo, Tolima" (código DANE 73461) → 4. Explorar por dimensión: demografía, educación, salud, servicios públicos, economía rural, pobreza → 5. Descargar Excel o PDF de la ficha completa</td><td>Web, PDF, Excel</td></tr>
+      <tr><td><b>datos.gov.co (SODA)</b></td><td>1. Ir a <a href="https://www.datos.gov.co">datos.gov.co</a> → 2. Buscar "contratación Murillo", "productores orgánicos ICA", "SECOP II" → 3. Filtrar por Tolima → 4. API: <code>https://www.datos.gov.co/resource/{id}.json?$where=departamento='TOLIMA'</code> → 5. App Token opcional en <a href="https://dev.socrata.com">dev.socrata.com</a></td><td>API REST, CSV, Excel</td></tr>
+      <tr><td><b>SISPRO (MinSalud)</b></td><td>1. <a href="https://www.sispro.gov.co">sispro.gov.co</a> → 2. "Bodega de datos" → 3. "RIPS" → 4. Filtro código DANE 73461 → 5. Descargar cubo o reporte predefinido → Alternativa: derecho de petición a Secretaría de Salud del Tolima</td><td>Portal, cubo OLAP</td></tr>
+      <tr><td><b>UPRA / ANT (UAF)</b></td><td>1. <a href="http://geoportal.ant.gov.co">geoportal.ant.gov.co</a> → 2. "Planes UAF" → 3. "73461 MURILLO" → 4. Descargar DTC (Determinación de Tipologías) PDF → 5. Shapefiles disponibles en el visor del geoportal</td><td>PDF, shapefile</td></tr>
+      <tr><td><b>IGAC (cartografía)</b></td><td>1. <a href="https://www.colombiaenmapas.gov.co">colombiaenmapas.gov.co</a> → 2. Tolima → Murillo → 3. Capas: veredal, cobertura, uso del suelo → 4. WFS: <code>https://geoservicios.igac.gov.co/geoserver/wfs?typename=igac:veredal</code> con filtro código municipal → EPSG:9377</td><td>WMS/WFS, shapefile</td></tr>
+      <tr><td><b>MinAgricultura (SPG)</b></td><td>1. <a href="https://www.minagricultura.gov.co">minagricultura.gov.co</a> → Dirección Cadenas Agrícolas → "Sistemas Participativos de Garantías" → 2. Consultar registro SPG y guía Decreto 1283/2024 → 3. Radicar solicitud ante Dirección de Evaluación de Insumos Agropecuarios</td><td>Portal web, ventanilla</td></tr>
+    </table>
+    <p style="font-size:11px;color:#A89E92;margin-top:8px;">Para asistencia en la consulta de estas fuentes, contactar a PropulsarIA o consultar la skill <b>formulacion-proyectos-cooperacion</b> (Paso 5: Motor de materia prima).</p>
+  </div>
+
+  <div class="card">
     <div class="sec-head"><div class="sec-num">6</div><div class="sec-title">Benchmarking Internacional<small>ODS · OCDE · FAO · BID</small></div></div>
     <div class="ods">
       <div class="ods-box"><div class="num">ODS 2</div><div class="name">Hambre cero — agricultura sostenible y mercados inclusivos (meta 2.3)</div></div>
@@ -173,13 +194,17 @@
       <tr><td><b>4. Mercados institucionales</b></td><td>Capacitación en requisitos sanitarios (Invima, ICA); registro de productores como proveedores del PAE; asistencia técnica en facturación electrónica y contratación pública</td><td>USD 2.000</td></tr>
       <tr><td><b>5. Asistencia técnica y seguimiento</b></td><td>Acompañamiento técnico durante 12 meses; evaluación de impacto; sistematización del modelo para replicación</td><td>USD 2.000</td></tr>
     </table>
-    <h3>Posibles fuentes de financiación</h3>
-    <ul>
-      <li><b>Fondo para la Acción Ambiental y la Niñez</b> — financia proyectos de agricultura sostenible y SPG en municipios APPA (hasta USD 20.000).</li>
-      <li><b>Gobernación del Tolima — Secretaría de Desarrollo Agropecuario</b> — cofinanciación de proyectos de comercialización asociativa para municipios categoría 6.</li>
-      <li><b>Programa Colombia + Competitiva (USAID / UE)</b> — ventanilla abierta para proyectos de desarrollo rural con enfoque de mercado.</li>
-      <li><b>Fondo de Fomento Agropecuario (FINAGRO)</b> — líneas de crédito blando para asociaciones de productores con asistencia técnica no reembolsable.</li>
-    </ul>
+    <h3>Oportunidades de financiación identificadas (septiembre 2026)</h3>
+    <p>Se identificaron las siguientes fuentes de financiación actualmente activas compatibles con el perfil del proyecto. Verificar elegibilidad y plazos en cada convocatoria antes de postular.</p>
+    <table>
+      <tr><th>Convocatoria</th><th>Donante</th><th>Monto</th><th>Cierre</th><th>Compatibilidad</th></tr>
+      <tr><td><b>Power of Diversity Grants 2026</b> — cadenas de valor agrícolas, semillas, acceso a mercados</td><td>Crop Trust / Alianza del Pacífico</td><td>€2,2M total</td><td>Por confirmar</td><td>ALTA — financia proyectos de fortalecimiento de cadenas de valor de cultivos de oportunidad; el SPG y la comercialización asociativa son elegibles</td></tr>
+      <tr><td><b>Colombia Sostenible Avanza: Paisajes Sostenibles</b> — proyectos productivos asociativos rurales (Fase II)</td><td>BID / FIDA / Fondo Colombia en Paz</td><td>US$135M (40.000 familias)</td><td>En estructuración</td><td>ALTA — 250 proyectos asociativos de paisajes productivos sostenibles; el perfil de Murillo (APPA, economía campesina) es prioritario</td></tr>
+      <tr><td><b>Convocatoria 152 — Economía Campesina</b> (capital semilla para planes de negocio)</td><td>Fondo Emprender SENA</td><td>$112.000M COP</td><td>Evaluación en curso</td><td>MEDIA — cada proyecto hasta $100M COP; requiere plan de negocio formalizado a través de SBDC</td></tr>
+      <tr><td><b>Convocatoria SGR Bioeconomía 2026</b> — soluciones de ciencia, tecnología e innovación para aprovechamiento sostenible de la biodiversidad</td><td>Minciencias / SGR</td><td>$749.982M COP</td><td>Evaluación en curso</td><td>MEDIA — la bioeconomía y la agregación de valor a productos agroecológicos son líneas financiables; requiere alianza con universidad o centro de investigación</td></tr>
+      <tr><td><b>Invitaciones Públicas ADR</b> — comercialización y asistencia técnica para pequeños productores</td><td>Agencia de Desarrollo Rural</td><td>Por proyecto</td><td>Varias abiertas</td><td>MEDIA — SMC-10-2026 y siguientes publicadas en agosto 2026; la ADR financia infraestructura de comercialización rural</td></tr>
+    </table>
+    <p style="font-size:11px;color:#A89E92;margin-top:8px;">Fuente: monitoreo sistemático de convocatorias activas en cooperación internacional, banca multilateral y compra pública (UNGM, BID, APC Colombia, Minciencias, SENA, ADR). Se recomienda verificar estado actualizado antes de postular.</p>
     <h3>Riesgos y mitigación</h3>
     <div class="risk"><div class="dot"></div><div><b>Baja participación de productores:</b> involucrar a líderes de la Escuela Agroecológica Campesina del Líbano como facilitadores; usar metodología de extensión campesino a campesino.</div></div>
     <div class="risk"><div class="dot"></div><div><b>Dificultades de conectividad para la plataforma digital:</b> desarrollar una versión offline de la tienda (catálogo impreso + pedidos por WhatsApp) sincronizable cuando haya conexión.</div></div>
@@ -188,13 +213,15 @@
   </div>
 
   <div class="card">
-    <div class="sec-head"><div class="sec-num">8</div><div class="sec-title">Fuentes Verificadas</div></div>
+    <div class="sec-head"><div class="sec-num">9</div><div class="sec-title">Fuentes Verificadas y Rutas de Acceso</div></div>
     <ul class="fuentes">
       <li>Alcaldía de Murillo — Informe de Gestión 2025 (población 4.479, categoría 6, ejecución sector agrícola 98,1%): <a href="http://murillotolima.micolombiadigital.gov.co/sites/murillotolima/content/files/000908/45386_informe-de-gestion-murillo-2025.pdf">murillotolima.micolombiadigital.gov.co</a></li>
       <li>ANT — Acuerdo 167 de 2021: cálculo de UAF para Murillo (61 UFH): <a href="http://geoportal.ant.gov.co/Planes-UAF/73461_MURILLO_PUBLICACION/73461_Murillo_Tolima/DTC%20Murillo%20-%20Tolima%20-%20CB.pdf">geoportal.ant.gov.co</a></li>
       <li>Ministerio de Agricultura — Resolución 044 de 2026: APPA Fresno, Herveo y Murillo: <a href="https://acmineria.com.co/wp-content/uploads/2025/12/RESOLUCION-No.-044-de-2026-y-DT.pdf">acmineria.com.co</a></li>
       <li>Normograma — Escuela Agroecológica Campesina del Líbano: <a href="https://normograma.com/documentospdf/PDF/R_MA_0331_2024_ANEXO.pdf">normograma.com</a></li>
       <li>DANE — Población campesina en Colombia (11,3 millones): <a href="https://www.agronegocios.co/agricultura/informe-del-dane-revela-que-colombia-tiene-una-poblacion-campesina-de-11-337-personas-4061154">agronegocios.co</a></li>
+      <li>Power of Diversity Grants 2026 (Crop Trust / Alianza del Pacífico) — cadenas de valor agrícolas: <a href="https://bogota.gov.co/boletin-oferta-internacional/power-diversity-grants-2026-financiacion-para-proyectos-agricolas">bogota.gov.co</a></li>
+      <li>Fondo Colombia en Paz — Colombia Sostenible Avanza (BID/FIDA): <a href="https://radioelsigno.turadioinfo.com/mundiales/18058/Fondo-Colombia-en-Paz-consigue-US-135-millones-para-beneficiar-a-40-000-familias-rurales">radioelsigno.com</a></li>
       <li>TerriData (DNP) — fichas municipales: <a href="https://terridata.dnp.gov.co">terridata.dnp.gov.co</a></li>
     </ul>
     <p style="font-size:11px;color:#A89E92;margin-top:12px;">Nota metodológica: los datos de población, categoría municipal y ejecución presupuestal provienen del Informe de Gestión 2025 de la Alcaldía de Murillo. Los datos de UAF provienen de la ANT. El marco normativo de SPG se cita del Decreto 1283 de 2024 (MinAgricultura).</p>
