@@ -1,0 +1,2107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem('sit-theme');
+    var theme = saved || (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+    document.documentElement.setAttribute('data-theme', theme === 'light' ? 'light' : 'dark');
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
+<title>Guía de Sistemas de Información Territorial | Cooperación Internacional</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+    --col-bg: #0d1117;
+    --col-surface: #161b22;
+    --col-surface2: #1c2230;
+    --col-border: #2a3448;
+    --col-text: #e6edf3;
+    --col-muted: #8b97a8;
+    --col-accent1: #f5a623;
+    --col-accent2: #3fb950;
+    --col-accent3: #58a6ff;
+    --col-accent4: #bc8cff;
+    --col-accent5: #ff7b72;
+    --col-accent6: #39d353;
+    --col-hero: linear-gradient(135deg, #0d1117 0%, #0e1b2e 50%, #0d1117 100%);
+    --col-hover: rgba(255,255,255,.04);
+    --col-hover-strong: rgba(255,255,255,.25);
+    --col-row-hover: rgba(255,255,255,.02);
+    --col-chip: rgba(255,255,255,.05);
+    --col-on-accent: #fff;
+    --col-nav-section: #4a566a;
+    --col-tab-hover: rgba(255,255,255,.3);
+    --col-link-bg: rgba(88,166,255,.1);
+    --col-link-border: rgba(88,166,255,.2);
+    --col-link-hover: rgba(88,166,255,.2);
+    --col-active-nav: rgba(88,166,255,.08);
+    --col-soft: rgba(255,255,255,.04);
+    --col-cover: #f4f1ea;
+    --col-cover-text: #1a2332;
+    --col-cover-muted: #526070;
+    --col-deck-bg: #0b1220;
+    --col-deck-card: #152033;
+    --col-deck-text: #e6edf3;
+    --col-deck-muted: #9aabbf;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  [data-theme="light"] {
+    color-scheme: light;
+    --col-bg: #f4f7fb;
+    --col-surface: #ffffff;
+    --col-surface2: #e8eef6;
+    --col-border: #d3dce8;
+    --col-text: #1a2332;
+    --col-muted: #526070;
+    --col-accent1: #9a6700;
+    --col-accent2: #1a7f37;
+    --col-accent3: #0969da;
+    --col-accent4: #8250df;
+    --col-accent5: #cf222e;
+    --col-accent6: #1a7f37;
+    --col-hero: linear-gradient(135deg, #f7f4ee 0%, #e7f0fb 55%, #f7f4ee 100%);
+    --col-hover: rgba(15,23,42,.05);
+    --col-hover-strong: rgba(15,23,42,.22);
+    --col-row-hover: rgba(15,23,42,.04);
+    --col-chip: rgba(15,23,42,.04);
+    --col-on-accent: #fff;
+    --col-nav-section: #6b7a8d;
+    --col-tab-hover: rgba(15,23,42,.28);
+    --col-link-bg: rgba(9,105,218,.08);
+    --col-link-border: rgba(9,105,218,.22);
+    --col-link-hover: rgba(9,105,218,.16);
+    --col-active-nav: rgba(9,105,218,.1);
+    --col-soft: rgba(15,23,42,.04);
+    --col-cover: #f7f4ee;
+    --col-cover-text: #1a2332;
+    --col-cover-muted: #526070;
+    --col-deck-bg: #f4f7fb;
+    --col-deck-card: #ffffff;
+    --col-deck-text: #1a2332;
+    --col-deck-muted: #526070;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--col-bg);
+    color: var(--col-text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--col-hero);
+    border-bottom: 1px solid var(--col-border);
+    padding: 64px 40px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 30%, rgba(88,166,255,.12) 0%, transparent 65%),
+                radial-gradient(ellipse 50% 80% at 10% 80%, rgba(245,166,35,.07) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-inner { max-width: 900px; margin: 0 auto; position: relative; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--col-link-bg); border: 1px solid var(--col-link-border);
+    color: var(--col-accent3); padding: 5px 14px; border-radius: 99px;
+    font-size: 12px; font-weight: 500; letter-spacing: .04em; text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 800; line-height: 1.1;
+    letter-spacing: -.02em;
+    margin-bottom: 18px;
+  }
+  .hero h1 span { color: var(--col-accent1); }
+  .hero p {
+    font-size: 17px; color: var(--col-muted); max-width: 620px;
+    line-height: 1.7; margin-bottom: 28px;
+  }
+  .hero-meta {
+    display: flex; flex-wrap: wrap; gap: 20px;
+    font-size: 13px; color: var(--col-muted);
+  }
+  .hero-meta span { display: flex; align-items: center; gap: 6px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--col-accent2); display: inline-block; }
+  .dot-o { background: var(--col-accent1); }
+  .dot-b { background: var(--col-accent3); }
+
+  /* ── LAYOUT ── */
+  .layout { display: flex; max-width: 1200px; margin: 0 auto; }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: 260px; flex-shrink: 0;
+    position: sticky; top: 0; height: 100vh;
+    overflow-y: auto; overflow-x: hidden;
+    border-right: 1px solid var(--col-border);
+    padding: 28px 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--col-border) transparent;
+  }
+  .sidebar-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--col-muted); padding: 0 20px 12px;
+  }
+  .nav-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 20px; cursor: pointer;
+    border-left: 3px solid transparent;
+    transition: all .2s; color: var(--col-muted);
+    font-size: 13.5px; font-weight: 400;
+    user-select: none;
+  }
+  .nav-item:hover { color: var(--col-text); background: var(--col-hover); }
+  .nav-item.active { color: var(--col-text); border-left-color: var(--col-accent3); background: var(--col-active-nav); }
+  .nav-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .nav-section { padding: 14px 20px 6px; font-size: 10px; letter-spacing: .06em; text-transform: uppercase; color: var(--col-nav-section); font-weight: 600; }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    flex: 1; padding: 40px 40px 80px;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  /* ── INTRO SECTION ── */
+  .intro-cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px; margin-bottom: 48px;
+  }
+  .intro-card {
+    background: var(--col-surface);
+    border: 1px solid var(--col-border);
+    border-radius: var(--radius); padding: 20px;
+  }
+  .intro-card .ic-icon { font-size: 26px; margin-bottom: 10px; }
+  .intro-card h4 { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .intro-card p { font-size: 13px; color: var(--col-muted); }
+
+  /* ── PLATFORM SECTION ── */
+  .platform-section {
+    margin-bottom: 64px; scroll-margin-top: 76px;
+  }
+  .platform-header {
+    display: flex; align-items: flex-start; gap: 18px;
+    margin-bottom: 28px;
+  }
+  .platform-icon {
+    width: 52px; height: 52px; border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; flex-shrink: 0;
+  }
+  .platform-header h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px; font-weight: 700;
+    margin-bottom: 4px; line-height: 1.2;
+  }
+  .platform-header .subtitle { color: var(--col-muted); font-size: 13.5px; }
+  .platform-url {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--col-link-bg); border: 1px solid var(--col-link-border);
+    color: var(--col-accent3); padding: 3px 10px; border-radius: 99px;
+    font-size: 12px; text-decoration: none; margin-top: 6px;
+    transition: background .2s;
+  }
+  .platform-url:hover { background: var(--col-link-hover); }
+
+  /* ── TABS ── */
+  .tabs { display: flex; gap: 4px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab-btn {
+    padding: 7px 16px; border-radius: var(--radius-sm);
+    background: transparent; border: 1px solid var(--col-border);
+    color: var(--col-muted); font-size: 13px; font-family: inherit;
+    cursor: pointer; transition: all .18s; font-weight: 500;
+  }
+  .tab-btn:hover { border-color: var(--col-tab-hover); color: var(--col-text); }
+  .tab-btn.active { background: var(--col-accent3); border-color: var(--col-accent3); color: var(--col-on-accent); }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── CARDS GRID ── */
+  .cards-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .card {
+    background: var(--col-surface);
+    border: 1px solid var(--col-border);
+    border-radius: var(--radius); padding: 18px;
+  }
+  .card h4 { font-size: 13.5px; font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .card p, .card li { font-size: 13px; color: var(--col-muted); }
+  .card ul { padding-left: 16px; }
+  .card li { margin-bottom: 4px; }
+
+  /* ── STEPS ── */
+  .steps { display: flex; flex-direction: column; gap: 14px; }
+  .step {
+    display: flex; gap: 16px;
+    background: var(--col-surface); border: 1px solid var(--col-border);
+    border-radius: var(--radius); padding: 16px 18px;
+  }
+  .step-num {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--col-accent3); color: var(--col-on-accent);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; flex-shrink: 0;
+  }
+  .step-content h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .step-content p { font-size: 13px; color: var(--col-muted); }
+
+  /* ── TAGS ── */
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .tag {
+    padding: 4px 12px; border-radius: 99px; font-size: 12px; font-weight: 500;
+    border: 1px solid;
+  }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    background: rgba(245,166,35,.07);
+    border: 1px solid rgba(245,166,35,.25);
+    border-radius: var(--radius); padding: 16px 20px;
+    margin-top: 16px;
+  }
+  .highlight-box h4 { font-size: 13.5px; font-weight: 600; color: var(--col-accent1); margin-bottom: 8px; }
+  .highlight-box p, .highlight-box li { font-size: 13px; color: var(--col-muted); }
+  .highlight-box ul { padding-left: 18px; }
+  .highlight-box li { margin-bottom: 4px; }
+
+  .tip-box {
+    background: rgba(63,185,80,.07);
+    border: 1px solid rgba(63,185,80,.25);
+    border-radius: var(--radius); padding: 16px 20px;
+    margin-top: 16px;
+  }
+  .tip-box h4 { font-size: 13.5px; font-weight: 600; color: var(--col-accent2); margin-bottom: 8px; }
+  .tip-box p, .tip-box li { font-size: 13px; color: var(--col-muted); }
+  .tip-box ul { padding-left: 18px; }
+  .tip-box li { margin-bottom: 4px; }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    border: none; border-top: 1px solid var(--col-border);
+    margin: 0 0 48px;
+  }
+
+  /* ── TABLE ── */
+  .data-table {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+    margin-top: 12px;
+  }
+  .data-table th {
+    background: var(--col-surface2); color: var(--col-muted);
+    font-weight: 600; padding: 10px 14px; text-align: left;
+    border-bottom: 1px solid var(--col-border);
+    font-size: 11.5px; text-transform: uppercase; letter-spacing: .04em;
+  }
+  .data-table td {
+    padding: 10px 14px; border-bottom: 1px solid var(--col-border);
+    color: var(--col-muted);
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--col-row-hover); }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 99px;
+    font-size: 11px; font-weight: 600; border: 1px solid;
+  }
+
+  /* ── SECTION TITLE ── */
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px; font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .section-title span { color: var(--col-accent1); }
+  .section-sub { color: var(--col-muted); font-size: 14.5px; margin-bottom: 28px; }
+
+  /* ── TOC OVERVIEW ── */
+  .overview-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(210px,1fr));
+    gap: 12px; margin-bottom: 48px;
+  }
+  .ov-card {
+    background: var(--col-surface); border: 1px solid var(--col-border);
+    border-radius: var(--radius); padding: 16px; cursor: pointer;
+    transition: border-color .2s, transform .2s;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .ov-card:hover { border-color: var(--col-hover-strong); transform: translateY(-2px); }
+  .ov-icon { font-size: 22px; }
+  .ov-label { font-size: 13px; font-weight: 600; line-height: 1.3; }
+  .ov-type { font-size: 11px; color: var(--col-muted); }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--col-border); border-radius: 99px; }
+
+  /* colors per platform */
+  .c1 { --pc: #f5a623; }
+  .c2 { --pc: #58a6ff; }
+  .c3 { --pc: #3fb950; }
+  .c4 { --pc: #bc8cff; }
+  .c5 { --pc: #ff7b72; }
+  .c6 { --pc: #39d353; }
+  .c7 { --pc: #ffa657; }
+  .c8 { --pc: #79c0ff; }
+  .c9 { --pc: #d2a8ff; }
+  .c10 { --pc: #56d364; }
+  .c11 { --pc: #e3b341; }
+
+  .pi-bg { background: color-mix(in srgb, var(--pc) 18%, transparent); }
+  .step-num-p { background: var(--pc) !important; }
+  .tab-btn.active-p { background: var(--pc) !important; border-color: var(--pc) !important; color: var(--col-on-accent) !important; }
+
+  [data-theme="light"] [style*="color:#58a6ff"] { color: #0969da !important; }
+  [data-theme="light"] [style*="color:#79c0ff"] { color: #1a6fb5 !important; }
+  [data-theme="light"] [style*="color:#3fb950"] { color: #1a7f37 !important; }
+  [data-theme="light"] [style*="color:#39d353"] { color: #1a7f37 !important; }
+  [data-theme="light"] [style*="color:#bc8cff"] { color: #8250df !important; }
+  [data-theme="light"] [style*="color:#d2a8ff"] { color: #8250df !important; }
+  [data-theme="light"] [style*="color:#ff7b72"] { color: #cf222e !important; }
+  [data-theme="light"] [style*="color:#ffa657"] { color: #b35900 !important; }
+  [data-theme="light"] [style*="color:#f5a623"] { color: #9a6700 !important; }
+  [data-theme="light"] [style*="color:#e3b341"] { color: #9a6700 !important; }
+  [data-theme="light"] [style*="background:rgba(255,255,255,.04)"],
+  [data-theme="light"] [style*="background:rgba(255,255,255,.05)"] {
+    background: var(--col-chip) !important;
+  }
+
+  .app-bar {
+    position: sticky; top: 0; z-index: 40;
+    display: flex; justify-content: flex-end; align-items: center; gap: 10px;
+    padding: 10px 16px;
+    background: color-mix(in srgb, var(--col-bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--col-border);
+  }
+  .view-switch, .theme-btn, .deck-link {
+    font-family: inherit; font-size: 13px; font-weight: 600;
+    border-radius: 99px; cursor: pointer;
+  }
+  .view-switch {
+    display: inline-flex; padding: 3px;
+    background: var(--col-surface); border: 1px solid var(--col-border);
+  }
+  .view-switch button {
+    border: 0; background: transparent; color: var(--col-muted);
+    font-family: inherit; font-size: 13px; font-weight: 600;
+    padding: 6px 14px; border-radius: 99px; cursor: pointer;
+  }
+  .view-switch button.active { background: var(--col-accent3); color: var(--col-on-accent); }
+  .theme-btn {
+    background: var(--col-surface); color: var(--col-text);
+    border: 1px solid var(--col-border); padding: 7px 14px;
+  }
+  .theme-btn:hover, .deck-link:hover { border-color: var(--col-tab-hover); }
+
+  #deck { display: none; }
+  body.deck-mode { overflow: hidden; }
+  body.deck-mode #guide { display: none; }
+  body.deck-mode #deck {
+    display: flex; flex-direction: column;
+    position: fixed; inset: 0; z-index: 30;
+    background: var(--col-deck-bg); color: var(--col-deck-text);
+  }
+  body.deck-mode .app-bar {
+    position: fixed; top: 14px; right: 18px; left: auto;
+    width: auto; background: transparent; border: none;
+    padding: 0; z-index: 50;
+  }
+  .deck-stage { flex: 1; position: relative; min-height: 0; }
+  .slide {
+    display: none; height: 100%; overflow: auto;
+    padding: 72px 88px 84px;
+  }
+  .slide.active { display: flex; flex-direction: column; justify-content: center; }
+  .slide-cover {
+    background: var(--col-cover); color: var(--col-cover-text);
+  }
+  .slide h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.08; letter-spacing: -.02em; font-weight: 800;
+    margin-bottom: 14px;
+  }
+  .slide .lede { font-size: 18px; color: var(--col-deck-muted); max-width: 820px; margin-bottom: 22px; }
+  .slide-cover .lede, .slide-cover p { color: var(--col-cover-muted); }
+  .slide-kicker {
+    font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--col-accent3); font-weight: 700; margin-bottom: 12px;
+  }
+  .slide-grid { display: grid; gap: 14px; }
+  .g2 { grid-template-columns: 1fr 1fr; }
+  .g3 { grid-template-columns: repeat(3, 1fr); }
+  .g4 { grid-template-columns: repeat(4, 1fr); }
+  .s-card {
+    background: var(--col-deck-card);
+    border: 1px solid color-mix(in srgb, var(--col-deck-text) 12%, transparent);
+    border-radius: var(--radius); padding: 16px 18px;
+  }
+  .slide-cover .s-card { background: #fff; color: var(--col-cover-text); }
+  .s-card h3 { font-family: 'Syne', sans-serif; font-size: 16px; margin-bottom: 6px; }
+  .s-card p, .s-card li { font-size: 14px; color: var(--col-deck-muted); }
+  .slide-cover .s-card p { color: var(--col-cover-muted); }
+  .s-card ul { padding-left: 16px; }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .pill {
+    font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 99px;
+    border: 1px solid color-mix(in srgb, var(--col-accent3) 35%, transparent);
+    color: var(--col-accent3);
+  }
+  .past { background: color-mix(in srgb, var(--col-accent5) 12%, var(--col-deck-card)); }
+  .future { background: color-mix(in srgb, var(--col-accent2) 12%, var(--col-deck-card)); }
+  .banner {
+    margin-top: 16px; padding: 14px 18px; border-radius: var(--radius);
+    background: color-mix(in srgb, var(--col-accent3) 16%, var(--col-deck-card));
+    border: 1px solid color-mix(in srgb, var(--col-accent3) 35%, transparent);
+    font-size: 15px;
+  }
+  .layer { border-left: 4px solid var(--col-accent3); }
+  .layer.c-base { border-left-color: var(--col-accent2); }
+  .layer.c-mid { border-left-color: var(--col-accent1); }
+  .layer.c-top { border-left-color: var(--col-accent3); }
+  .map-svg { width: min(280px, 34vw); height: auto; justify-self: end; }
+  .deck-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 46px; height: 72px; border: 0; cursor: pointer; z-index: 2;
+    background: color-mix(in srgb, var(--col-deck-text) 8%, transparent);
+    color: var(--col-deck-text); font-size: 32px; border-radius: 12px;
+  }
+  .deck-arrow.prev { left: 16px; }
+  .deck-arrow.next { right: 16px; }
+  body.deck-mode.on-cover .deck-arrow {
+    color: var(--col-cover-text);
+    background: rgba(26,35,50,.08);
+  }
+  body.deck-mode.on-cover #deck-count { color: var(--col-cover-muted); }
+  .deck-footer {
+    position: absolute; left: 24px; right: 24px; bottom: 16px;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 2; pointer-events: none;
+  }
+  .deck-footer > * { pointer-events: auto; }
+  #deck-count { font-size: 13px; color: var(--col-deck-muted); font-weight: 600; }
+  .slide-cover ~ .deck-footer, body.deck-mode .on-cover #deck-count { color: var(--col-cover-muted); }
+  .deck-link {
+    background: var(--col-deck-card); color: var(--col-deck-text);
+    border: 1px solid color-mix(in srgb, var(--col-deck-text) 18%, transparent);
+    padding: 7px 14px;
+  }
+  body.deck-mode.on-cover .deck-link { background: #fff; color: var(--col-cover-text); }
+  .quad {
+    display: grid; grid-template-columns: 1fr 180px 1fr; grid-template-rows: 1fr 1fr;
+    gap: 12px; align-items: center;
+  }
+  .quad-center {
+    grid-column: 2; grid-row: 1 / span 2;
+    width: 160px; height: 160px; margin: 0 auto; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    background: var(--col-accent3); color: var(--col-on-accent);
+    font-family: 'Syne', sans-serif; font-weight: 800; padding: 16px;
+  }
+  .flow { display: flex; gap: 10px; align-items: stretch; }
+  .flow .s-card { flex: 1; }
+  .flow-arrow { align-self: center; color: var(--col-accent1); font-size: 22px; }
+  .deck-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .deck-table th, .deck-table td {
+    text-align: left; padding: 12px 14px;
+    border-bottom: 1px solid color-mix(in srgb, var(--col-deck-text) 12%, transparent);
+  }
+  .deck-table th { color: var(--col-deck-muted); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; }
+  .bars { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+  .bar-row { display: grid; grid-template-columns: 160px 1fr; gap: 12px; align-items: center; font-size: 14px; }
+  .bar-track { height: 14px; border-radius: 99px; background: color-mix(in srgb, var(--col-deck-text) 10%, transparent); position: relative; }
+  .bar-fill { height: 100%; border-radius: 99px; background: var(--col-accent3); }
+  .bar-mark { position: absolute; top: -4px; bottom: -4px; width: 2px; background: var(--col-accent1); }
+
+  @media (max-width: 768px) {
+    .layout { flex-direction: column; }
+    .sidebar { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid var(--col-border); overflow-x: auto; display: flex; flex-direction: row; flex-wrap: wrap; padding: 12px; gap: 4px; }
+    .sidebar-title, .nav-section { display: none; }
+    .nav-item { border-left: none; border-bottom: 3px solid transparent; white-space: nowrap; padding: 8px 12px; border-radius: var(--radius-sm); }
+    .nav-item.active { border-bottom-color: var(--col-accent3); border-left-color: transparent; }
+    .main { padding: 24px 20px 60px; }
+    .hero { padding: 40px 20px 32px; }
+    .cards-grid { grid-template-columns: 1fr; }
+    .app-bar { justify-content: space-between; }
+    .slide { padding: 78px 18px 88px; }
+    .g2, .g3, .g4, .flow, .quad, .bar-row { grid-template-columns: 1fr; display: grid; }
+    .flow { display: grid; }
+    .flow-arrow { display: none; }
+    .quad-center { grid-column: 1; grid-row: auto; }
+    .map-svg { display: none; }
+    .deck-arrow { width: 36px; height: 56px; }
+    body.deck-mode .app-bar { left: 12px; right: 12px; justify-content: flex-end; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app-bar">
+  <div class="view-switch" role="group" aria-label="Vista">
+    <button type="button" id="btn-guide" class="active">Guía</button>
+    <button type="button" id="btn-deck">Presentación</button>
+  </div>
+  <button type="button" class="theme-btn" id="btn-theme" aria-pressed="false">Noche</button>
+</div>
+
+<div id="guide">
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">🗺️ Cooperación Internacional · Planeación Territorial</div>
+    <h1>Guía de <span>Sistemas de Información</span><br>Territorial en Colombia</h1>
+    <p>Aprende a usar los portales y plataformas de datos territoriales para sustentar diagnósticos, justificar brechas, seleccionar municipios focales y construir indicadores en proyectos de cooperación internacional.</p>
+    <div class="hero-meta">
+      <span><span class="dot"></span> Plataformas nacionales y validación global</span>
+      <span><span class="dot dot-o"></span> Guías paso a paso</span>
+      <span><span class="dot dot-b"></span> Estrategias para cooperación</span>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-title">Navegación</div>
+    <div class="nav-section">Introducción</div>
+    <div class="nav-item active" data-target="intro" onclick="navScrollTo('intro', this)"><span class="nav-dot" style="background:#58a6ff"></span> ¿Por qué usar estos datos?</div>
+    <div class="nav-section">Plataformas</div>
+    <div class="nav-item" data-target="terridata" onclick="navScrollTo('terridata', this)"><span class="nav-dot" style="background:#3fb950"></span> TerriData</div>
+    <div class="nav-item" data-target="datos-paz" onclick="navScrollTo('datos-paz', this)"><span class="nav-dot" style="background:#79c0ff"></span> Datos Paz</div>
+    <div class="nav-item" data-target="ods-dane" onclick="navScrollTo('ods-dane', this)"><span class="nav-dot" style="background:#e3b341"></span> ODS / DANE</div>
+    <div class="nav-item" data-target="sispt" onclick="navScrollTo('sispt', this)"><span class="nav-dot" style="background:#d2a8ff"></span> SisPT</div>
+    <div class="nav-item" data-target="siac" onclick="navScrollTo('siac', this)"><span class="nav-dot" style="background:#ffa657"></span> SIAC</div>
+    <div class="nav-item" data-target="colombia-ot" onclick="navScrollTo('colombia-ot', this)"><span class="nav-dot" style="background:#58a6ff"></span> Colombia OT</div>
+    <div class="nav-item" data-target="icde" onclick="navScrollTo('icde', this)"><span class="nav-dot" style="background:#f5a623"></span> ICDE</div>
+    <div class="nav-item" data-target="mapainversiones" onclick="navScrollTo('mapainversiones', this)"><span class="nav-dot" style="background:#39d353"></span> MapaInversiones</div>
+    <div class="nav-item" data-target="ciffit" onclick="navScrollTo('ciffit', this)"><span class="nav-dot" style="background:#ff7b72"></span> CIFFIT</div>
+    <div class="nav-item" data-target="datos-abiertos" onclick="navScrollTo('datos-abiertos', this)"><span class="nav-dot" style="background:#bc8cff"></span> Datos Abiertos</div>
+    <div class="nav-item" data-target="portales-sectoriales" onclick="navScrollTo('portales-sectoriales', this)"><span class="nav-dot" style="background:#ffa657"></span> SISPRO y SiB</div>
+    <div class="nav-section">Estrategia</div>
+    <div class="nav-item" data-target="cadena-fases" onclick="navScrollTo('cadena-fases', this)"><span class="nav-dot" style="background:#e05d44"></span> Las 5 Fases del Formulador</div>
+    <div class="nav-item" data-target="caso-practico" onclick="navScrollTo('caso-practico', this)"><span class="nav-dot" style="background:#3fb950"></span> Caso Práctico: Chocó</div>
+    <div class="nav-item" data-target="estrategia" onclick="navScrollTo('estrategia', this)"><span class="nav-dot" style="background:#58a6ff"></span> Cómo combinar plataformas</div>
+    <div class="nav-item" data-target="validacion-global" onclick="navScrollTo('validacion-global', this)"><span class="nav-dot" style="background:#58a6ff"></span> Validación global</div>
+    <div class="nav-item" data-target="guion" onclick="navScrollTo('guion', this)"><span class="nav-dot" style="background:#f5a623"></span> Guion y preguntas</div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- INTRO -->
+    <section class="platform-section" id="intro">
+      <div class="section-title">¿Por qué usar <span>datos territoriales</span><br>en proyectos de cooperación?</div>
+      <p class="section-sub">La cooperación internacional financia mejores proyectos cuando demuestran evidencia, priorización territorial y capacidad de seguimiento.</p>
+
+      <div class="highlight-box" style="margin-bottom:22px;">
+        <h4>De las buenas intenciones a la cadena de valor de la evidencia</h4>
+        <p>Una propuesta sostenida solo en la narrativa cualitativa es cada vez más frágil ante un donante. Los sistemas de información territorial reducen el riesgo percibido porque convierten el diagnóstico en evidencia oficial, comparable y verificable. El plano de la evidencia pide tres pilares: priorización territorial, líneas base oficiales y sostenibilidad institucional.</p>
+      </div>
+
+      <div class="intro-cards">
+        <div class="intro-card">
+          <div class="ic-icon">🔍</div>
+          <h4>Diagnósticos basados en evidencia</h4>
+          <p>Sustenta líneas base con datos oficiales verificables que dan credibilidad a la propuesta.</p>
+        </div>
+        <div class="intro-card">
+          <div class="ic-icon">📍</div>
+          <h4>Priorización territorial</h4>
+          <p>Justifica la selección de municipios focales con indicadores comparables y cartografía.</p>
+        </div>
+        <div class="intro-card">
+          <div class="ic-icon">📊</div>
+          <h4>Indicadores de resultado</h4>
+          <p>Define métricas con líneas base oficiales para demostrar el cambio generado.</p>
+        </div>
+        <div class="intro-card">
+          <div class="ic-icon">🌿</div>
+          <h4>Sostenibilidad</h4>
+          <p>Conecta intervenciones con plataformas nacionales para asegurar continuidad e institucionalización.</p>
+        </div>
+      </div>
+
+      <div class="section-title" style="font-size:18px; margin-bottom:12px;">Todas las plataformas de un vistazo</div>
+      <div class="overview-grid">
+        <div class="ov-card" onclick="navScrollTo('terridata', document.querySelector('[data-target=terridata]'))">
+          <span class="ov-icon">📈</span><div><div class="ov-label">TerriData</div><div class="ov-type">Estadísticas territoriales</div></div>
+        </div>
+        <div class="ov-card" onclick="navScrollTo('datos-paz', document.querySelector('[data-target=datos-paz]'))">
+          <span class="ov-icon">🕊️</span><div><div class="ov-label">Datos Paz</div><div class="ov-type">Víctimas · Paz · IGED</div></div>
+        </div>
+        <div class="ov-card" onclick="navScrollTo('ods-dane', document.querySelector('[data-target=ods-dane]'))">
+          <span class="ov-icon">🌐</span><div><div class="ov-label">ODS / DANE</div><div class="ov-type">Agenda 2030 · ODS</div></div>
+        </div>
+        <div class="ov-card" onclick="navScrollTo('sispt', document.querySelector('[data-target=sispt]'))">
+          <span class="ov-icon">📋</span><div><div class="ov-label">SisPT</div><div class="ov-type">Planes de Desarrollo</div></div>
+        </div>
+        <div class="ov-card" onclick="navScrollTo('siac', document.querySelector('[data-target=siac]'))">
+          <span class="ov-icon">🌳</span><div><div class="ov-label">SIAC</div><div class="ov-type">Ambiental · Biodiversidad</div></div>
+        </div>
+        <div class="ov-card" onclick="navScrollTo('colombia-ot', document.querySelector('[data-target=colombia-ot]'))">
+          <span class="ov-icon">🏘️</span><div><div class="ov-label">Colombia OT</div><div class="ov-type">Ordenamiento territorial</div></div>
+        </div>
+        <div class="ov-card" onclick="navScrollTo('icde', document.querySelector('[data-target=icde]'))">
+          <span class="ov-icon">🗺️</span><div><div class="ov-label">ICDE</div><div class="ov-type">Geográfico · Cartografía</div></div>
+        </div>
+        <div class="ov-card" onclick="navScrollTo('mapainversiones', document.querySelector('[data-target=mapainversiones]'))">
+          <span class="ov-icon">💼</span><div><div class="ov-label">MapaInversiones</div><div class="ov-type">Inversión pública</div></div>
+        </div>
+        <div class="ov-card" onclick="navScrollTo('ciffit', document.querySelector('[data-target=ciffit]'))">
+          <span class="ov-icon">💰</span><div><div class="ov-label">CIFFIT</div><div class="ov-type">Finanzas · Fiscal</div></div>
+        </div>
+        <div class="ov-card" onclick="navScrollTo('datos-abiertos', document.querySelector('[data-target=datos-abiertos]'))">
+          <span class="ov-icon">🔓</span><div><div class="ov-label">Datos Abiertos</div><div class="ov-type">Portal nacional · MinTIC</div></div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ══════════════ LAS 5 FASES ══════════════ -->
+    <section class="platform-section" id="cadena-fases">
+      <div class="section-title">La cadena de valor<br>de <span>la evidencia</span></div>
+      <p class="section-sub">La cooperación no financia buenas intenciones; financia la cadena de valor de la evidencia. Cinco fases, cinco herramientas.</p>
+
+      <div style="display:flex; flex-direction:column; gap:16px; margin-bottom:32px;">
+
+        <!-- Fase 1 -->
+        <div style="background:var(--col-surface); border:1px solid var(--col-border); border-radius:var(--radius); padding:22px 24px; display:flex; gap:20px; align-items:flex-start;">
+          <div style="width:52px;height:52px;background:rgba(245,166,35,.18);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🔎</div>
+          <div style="flex:1; min-width:0;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;">
+              <span style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;">Fase 1: Diagnóstico Integral</span>
+              <span class="badge" style="background:rgba(245,166,35,.15);border-color:rgba(245,166,35,.4);color:#f5a623;">TerriData</span>
+            </div>
+            <p style="font-size:13.5px;color:var(--col-muted);margin-bottom:10px;">Línea base y perfilamiento territorial. Consolida dimensiones económicas, sociales y ambientales de los 1.102 municipios de Colombia. El punto de partida irrenunciable de cualquier propuesta. SISPRO complementa esa ficha con la línea base sociosanitaria (RIPS, RUAF y PILA) cuando el proyecto toca salud pública.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              <span style="font-size:12px;background:rgba(255,255,255,.05);border:1px solid var(--col-border);padding:3px 10px;border-radius:99px;color:var(--col-muted);">📊 Fichas municipales</span>
+              <span style="font-size:12px;background:rgba(255,255,255,.05);border:1px solid var(--col-border);padding:3px 10px;border-radius:99px;color:var(--col-muted);">🗺️ Mapas de calor</span>
+              <span style="font-size:12px;background:rgba(255,255,255,.05);border:1px solid var(--col-border);padding:3px 10px;border-radius:99px;color:var(--col-muted);">⚖️ Comparaciones</span>
+              <span style="font-size:12px;background:rgba(255,255,255,.05);border:1px solid var(--col-border);padding:3px 10px;border-radius:99px;color:var(--col-muted);">🎯 Triage Poblacional</span>
+              <button onclick="navScrollTo('terridata', document.querySelector('[data-target=terridata]'))" style="font-size:12px;background:rgba(88,166,255,.15);border:1px solid rgba(88,166,255,.35);padding:3px 12px;border-radius:99px;color:#58a6ff;cursor:pointer;font-family:inherit;">→ Ver tutorial TerriData</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arrow -->
+        <div style="text-align:center;color:var(--col-muted);font-size:20px;">↓</div>
+
+        <!-- Fase 2 -->
+        <div style="background:var(--col-surface); border:1px solid var(--col-border); border-radius:var(--radius); padding:22px 24px; display:flex; gap:20px; align-items:flex-start;">
+          <div style="width:52px;height:52px;background:rgba(121,192,255,.18);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">📉</div>
+          <div style="flex:1; min-width:0;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;">
+              <span style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;">Fase 2: Identificación de Brechas y Priorización</span>
+              <span class="badge" style="background:rgba(121,192,255,.15);border-color:rgba(121,192,255,.4);color:#79c0ff;">DANE · Datos Paz</span>
+            </div>
+            <p style="font-size:13.5px;color:var(--col-muted);margin-bottom:10px;">Supera la métrica de pobreza monetaria. El financiador necesita saber exactamente qué carencias específicas va a atacar el proyecto. El IPM identifica privaciones precisas; el modelo MITI de Datos Paz añade el nivel de afectación humanitaria y el estado de reparación en los 170 municipios PDET.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              <span style="font-size:12px;background:rgba(255,255,255,.05);border:1px solid var(--col-border);padding:3px 10px;border-radius:99px;color:var(--col-muted);">📐 IPM multidimensional</span>
+              <span style="font-size:12px;background:rgba(255,255,255,.05);border:1px solid var(--col-border);padding:3px 10px;border-radius:99px;color:var(--col-muted);">🕊️ Modelo MITI / PDET</span>
+              <span style="font-size:12px;background:rgba(255,255,255,.05);border:1px solid var(--col-border);padding:3px 10px;border-radius:99px;color:var(--col-muted);">🏥 Justicia reparativa</span>
+              <button onclick="navScrollTo('datos-paz', document.querySelector('[data-target=datos-paz]'))" style="font-size:12px;background:rgba(88,166,255,.15);border:1px solid rgba(88,166,255,.35);padding:3px 12px;border-radius:99px;color:#58a6ff;cursor:pointer;font-family:inherit;">→ Ver tutorial Datos Paz</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center;color:var(--col-muted);font-size:20px;">↓</div>
+
+        <!-- Fase 3 -->
+        <div style="background:var(--col-surface); border:1px solid var(--col-border); border-radius:var(--radius); padding:22px 24px; display:flex; gap:20px; align-items:flex-start;">
+          <div style="width:52px;height:52px;background:rgba(63,185,80,.18);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">📌</div>
+          <div style="flex:1; min-width:0;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;">
+              <span style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;">Fase 3: Precisión Geoespacial y Viabilidad Territorial</span>
+              <span class="badge" style="background:rgba(63,185,80,.15);border-color:rgba(63,185,80,.4);color:#3fb950;">ICDE · Colombia OT · Colombia en Mapas</span>
+            </div>
+            <p style="font-size:13.5px;color:var(--col-muted);margin-bottom:10px;">Un proyecto sin anclaje normativo y espacial es un riesgo inaceptable para el donante. Estas tres piezas no se sustituyen: ICDE fija el estándar, Colombia OT valida el POT y Colombia en Mapas agrega el sustento físico.</p>
+            <div class="cards-grid" style="margin-bottom:12px;">
+              <div class="card"><h4>ICDE</h4><p>Ente rector del Marco de Referencia Geoespacial. Los geoservicios WMS/WFS en origen nacional EPSG:9377 hacen interoperable la cartografía del proyecto con el monitoreo del donante.</p></div>
+              <div class="card"><h4>Colombia OT</h4><p>Verifica los objetivos territoriales legales y si el uso del suelo del POT admite la intervención propuesta.</p></div>
+              <div class="card"><h4>Colombia en Mapas</h4><p>Agregador del IGAC. Superpone catastro, riesgos, infraestructura, usos del suelo y ortofotografías de más de 50 entidades. Para el nivel predial, esta es la capa de consulta; la información bajo reserva se solicita al IGAC.</p></div>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              <span style="font-size:12px;background:rgba(255,255,255,.05);border:1px solid var(--col-border);padding:3px 10px;border-radius:99px;color:var(--col-muted);">🗺️ Visor uso del suelo</span>
+              <span style="font-size:12px;background:rgba(255,255,255,.05);border:1px solid var(--col-border);padding:3px 10px;border-radius:99px;color:var(--col-muted);">📋 Normatividad OT</span>
+              <span style="font-size:12px;background:rgba(255,255,255,.05);border:1px solid var(--col-border);padding:3px 10px;border-radius:99px;color:var(--col-muted);">🔍 Metadatos WMS/WFS</span>
+              <button onclick="navScrollTo('colombia-ot', document.querySelector('[data-target=colombia-ot]'))" style="font-size:12px;background:rgba(88,166,255,.15);border:1px solid rgba(88,166,255,.35);padding:3px 12px;border-radius:99px;color:#58a6ff;cursor:pointer;font-family:inherit;">→ Ver tutorial Colombia OT</button>
+              <button onclick="navScrollTo('icde', document.querySelector('[data-target=icde]'))" style="font-size:12px;background:rgba(88,166,255,.15);border:1px solid rgba(88,166,255,.35);padding:3px 12px;border-radius:99px;color:#58a6ff;cursor:pointer;font-family:inherit;">→ Ver tutorial ICDE</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center;color:var(--col-muted);font-size:20px;">↓</div>
+
+        <!-- Fase 4 -->
+        <div style="background:var(--col-surface); border:1px solid var(--col-border); border-radius:var(--radius); padding:22px 24px; display:flex; gap:20px; align-items:flex-start;">
+          <div style="width:52px;height:52px;background:rgba(188,140,255,.18);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">⚙️</div>
+          <div style="flex:1; min-width:0;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;">
+              <span style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;">Fase 4: Alineación Estratégica Institucional</span>
+              <span class="badge" style="background:rgba(188,140,255,.15);border-color:rgba(188,140,255,.4);color:#bc8cff;">SisPT · Portal Territorial · IDF</span>
+            </div>
+            <p style="font-size:13.5px;color:var(--col-muted);margin-bottom:10px;">El financiador necesita garantías de que el proyecto no operará como una isla. Articula las metas del proyecto con el Plan de Desarrollo Territorial (SisPT) y evalúa la capacidad de contrapartida con el Índice de Desempeño Fiscal del CIFFIT. El IDF clasifica cada municipio en Sostenible, Solvente, Vulnerable, Riesgo o Deterioro. Si está en Riesgo o Deterioro, la sostenibilidad no puede depender de la contrapartida fiscal local: el municipio no tiene capacidad de cofinanciar.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              <span style="font-size:12px;background:rgba(255,255,255,.05);border:1px solid var(--col-border);padding:3px 10px;border-radius:99px;color:var(--col-muted);">📋 PDT municipio</span>
+              <span style="font-size:12px;background:rgba(255,255,255,.05);border:1px solid var(--col-border);padding:3px 10px;border-radius:99px;color:var(--col-muted);">🌐 Metas ODS / DANE</span>
+              <span style="font-size:12px;background:rgba(255,255,255,.05);border:1px solid var(--col-border);padding:3px 10px;border-radius:99px;color:var(--col-muted);">💰 Visor IDF fiscal</span>
+              <button onclick="navScrollTo('sispt', document.querySelector('[data-target=sispt]'))" style="font-size:12px;background:rgba(88,166,255,.15);border:1px solid rgba(88,166,255,.35);padding:3px 12px;border-radius:99px;color:#58a6ff;cursor:pointer;font-family:inherit;">→ Ver tutorial SisPT</button>
+              <button onclick="navScrollTo('ciffit', document.querySelector('[data-target=ciffit]'))" style="font-size:12px;background:rgba(88,166,255,.15);border:1px solid rgba(88,166,255,.35);padding:3px 12px;border-radius:99px;color:#58a6ff;cursor:pointer;font-family:inherit;">→ Ver tutorial CIFFIT</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center;color:var(--col-muted);font-size:20px;">↓</div>
+
+        <!-- Fase 5 -->
+        <div style="background:var(--col-surface); border:1px solid var(--col-border); border-radius:var(--radius); padding:22px 24px; display:flex; gap:20px; align-items:flex-start;">
+          <div style="width:52px;height:52px;background:rgba(57,211,83,.18);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;">🗄️</div>
+          <div style="flex:1; min-width:0;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;flex-wrap:wrap;">
+              <span style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;">Fase 5: Motor de Materia Prima</span>
+              <span class="badge" style="background:rgba(57,211,83,.15);border-color:rgba(57,211,83,.4);color:#39d353;">Datos Abiertos</span>
+            </div>
+            <p style="font-size:13.5px;color:var(--col-muted);margin-bottom:10px;">Para usuarios avanzados: cuando los tableros predefinidos no son suficientes y se requiere la extracción y cruce directo de registros crudos. datos.gov.co, bajo la Ley 1712 de 2014, entrega CSV, JSON y la API Socrata/SODA. En ambiente, MADS aporta objetos territoriales legales, gestión hídrica y licenciamiento; SiB Colombia aporta evidencia de especies y ecosistemas.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              <span style="font-size:12px;background:rgba(255,255,255,.05);border:1px solid var(--col-border);padding:3px 10px;border-radius:99px;color:var(--col-muted);">🔓 datos.gov.co</span>
+              <span style="font-size:12px;background:rgba(255,255,255,.05);border:1px solid var(--col-border);padding:3px 10px;border-radius:99px;color:var(--col-muted);">📡 API Socrata/SODA</span>
+              <span style="font-size:12px;background:rgba(255,255,255,.05);border:1px solid var(--col-border);padding:3px 10px;border-radius:99px;color:var(--col-muted);">📊 CSV / JSON</span>
+              <button onclick="navScrollTo('datos-abiertos', document.querySelector('[data-target=datos-abiertos]'))" style="font-size:12px;background:rgba(88,166,255,.15);border:1px solid rgba(88,166,255,.35);padding:3px 12px;border-radius:99px;color:#58a6ff;cursor:pointer;font-family:inherit;">→ Ver tutorial Datos Abiertos</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(224,93,68,.08);border:1px solid rgba(224,93,68,.3);border-radius:var(--radius);padding:18px 24px;display:flex;align-items:center;gap:14px;">
+        <span style="font-size:26px;">💡</span>
+        <p style="font-size:14px;color:var(--col-muted);"><strong style="color:var(--col-text);">Principio clave:</strong> Cada fase alimenta a la siguiente. Sin el diagnóstico (Fase 1) no puedes priorizar (Fase 2). Sin la priorización no puedes precisar espacialmente (Fase 3). Sin el anclaje espacial e institucional (Fases 3–4) el proyecto carece de viabilidad ante el donante. Los datos crudos (Fase 5) son el nivel avanzado que diferencia propuestas técnicas de las narrativas ordinarias.</p>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ══════════════ CASO PRÁCTICO CHOCÓ ══════════════ -->
+    <section class="platform-section" id="caso-practico">
+      <div class="section-title">Caso Práctico:<br><span>Tejiendo la narrativa del proyecto</span></div>
+      <p class="section-sub">Proyecto de Resiliencia Climática en el Chocó — la cadena local cierra con una justificación que el donante puede leer en su propio idioma.</p>
+
+      <div style="background:rgba(88,166,255,.06);border:1px solid rgba(88,166,255,.2);border-radius:var(--radius);padding:16px 22px;margin-bottom:24px;">
+        <p style="font-size:14px;color:var(--col-muted);">El Chocó es el departamento con el IPM más alto de Colombia, alta presencia de comunidades afrodescendientes e indígenas, impacto documentado del conflicto armado y una de las regiones con mayor vulnerabilidad climática del continente. Las cifras siguientes convierten esa realidad en una propuesta verificable, y el eslabón global la vuelve legible para un cooperante multilateral.</p>
+      </div>
+
+      <div class="cards-grid" style="margin-bottom:24px;">
+
+        <div class="card" style="border-color:rgba(245,166,35,.3);">
+          <h4 style="color:#f5a623;">① Perfil Demográfico — TerriData</h4>
+          <p style="margin-bottom:10px;">Demuestra la necesidad poblacional urgente y establece los <strong>indicadores comparativos de línea base</strong> del Chocó frente al promedio nacional y regional.</p>
+          <ul style="font-size:13px;color:var(--col-muted);">
+            <li>IPM Chocó: ~70% vs. 18% nacional</li>
+            <li>Acceso a agua potable: 45% vs. 87% nacional</li>
+            <li>Mortalidad infantil: 3× el promedio</li>
+          </ul>
+          <div style="margin-top:12px;">
+            <button onclick="navScrollTo('terridata', document.querySelector('[data-target=terridata]'))" style="font-size:12px;background:rgba(245,166,35,.15);border:1px solid rgba(245,166,35,.35);padding:4px 12px;border-radius:99px;color:#f5a623;cursor:pointer;font-family:inherit;">→ Tutorial TerriData</button>
+          </div>
+        </div>
+
+        <div class="card" style="border-color:rgba(121,192,255,.3);">
+          <h4 style="color:#79c0ff;">② Brecha Exacta — DANE / IPM</h4>
+          <p style="margin-bottom:10px;">El IPM señala estadísticamente la dimensión precisa de <strong>precariedad de la vivienda</strong> que el proyecto va a solucionar. No "pobreza en general": la privación concreta que se va a atacar.</p>
+          <ul style="font-size:13px;color:var(--col-muted);">
+            <li>Privación en material de paredes: 58%</li>
+            <li>Sin acceso a saneamiento: 63%</li>
+            <li>Sin acceso a agua potable: 55%</li>
+          </ul>
+          <div style="margin-top:12px;">
+            <button onclick="navScrollTo('datos-abiertos', document.querySelector('[data-target=datos-abiertos]'))" style="font-size:12px;background:rgba(121,192,255,.15);border:1px solid rgba(121,192,255,.35);padding:4px 12px;border-radius:99px;color:#79c0ff;cursor:pointer;font-family:inherit;">→ Tutorial Datos Abiertos</button>
+          </div>
+        </div>
+
+        <div class="card" style="border-color:rgba(255,166,87,.3);">
+          <h4 style="color:#ffa657;">③ Factor de Riesgo Climático — SIAC</h4>
+          <p style="margin-bottom:10px;">Aporta la evidencia cartográfica de la <strong>vulnerabilidad climática</strong> y el aumento de pluviosidad documentado, vinculando la crisis habitacional con el cambio climático.</p>
+          <ul style="font-size:13px;color:var(--col-muted);">
+            <li>Índice de vulnerabilidad hídrica: Muy Alto</li>
+            <li>Aumento de precipitación: +15% (IDEAM)</li>
+            <li>Deforestación acumulada y pérdida de regulación hídrica</li>
+          </ul>
+          <div style="margin-top:12px;">
+            <button onclick="navScrollTo('siac', document.querySelector('[data-target=siac]'))" style="font-size:12px;background:rgba(255,166,87,.15);border:1px solid rgba(255,166,87,.35);padding:4px 12px;border-radius:99px;color:#ffa657;cursor:pointer;font-family:inherit;">→ Tutorial SIAC</button>
+          </div>
+        </div>
+
+        <div class="card" style="border-color:rgba(57,211,83,.3);">
+          <h4 style="color:#39d353;">④ Justicia Reparativa — Datos Paz / MITI</h4>
+          <p style="margin-bottom:10px;">Asegura y certifica que la intervención operará bajo <strong>criterios de construcción de paz</strong> en una zona PDET priorizada, alineando el proyecto con agendas de reconciliación.</p>
+          <ul style="font-size:13px;color:var(--col-muted);">
+            <li>Municipios PDET en Chocó: 22 de 30</li>
+            <li>Nivel MITI: Muy Alto en la mayoría</li>
+            <li>Víctimas con necesidades insatisfechas de reparación</li>
+          </ul>
+          <div style="margin-top:12px;">
+            <button onclick="navScrollTo('datos-paz', document.querySelector('[data-target=datos-paz]'))" style="font-size:12px;background:rgba(57,211,83,.15);border:1px solid rgba(57,211,83,.35);padding:4px 12px;border-radius:99px;color:#39d353;cursor:pointer;font-family:inherit;">→ Tutorial Datos Paz</button>
+          </div>
+        </div>
+
+        <div class="card" style="border-color:rgba(88,166,255,.35);">
+          <h4 style="color:#58a6ff;">⑤ Justificación global — UNDP y OCDE</h4>
+          <p style="margin-bottom:10px;">Traduce el rezago local a una contribución verificable frente a agendas que el donante ya usa: vivienda y resiliencia urbana (ODS 11) y estándares de gobernanza territorial de la OCDE.</p>
+          <ul style="font-size:13px;color:var(--col-muted);">
+            <li>ODS 11: ciudades y comunidades sostenibles</li>
+            <li>UNDP Data Futures: IDH e IPM en contexto global</li>
+            <li>OECD Local Data: resiliencia y servicios territoriales</li>
+          </ul>
+          <div style="margin-top:12px;">
+            <button onclick="navScrollTo('validacion-global', document.querySelector('[data-target=validacion-global]'))" style="font-size:12px;background:rgba(88,166,255,.15);border:1px solid rgba(88,166,255,.35);padding:4px 12px;border-radius:99px;color:#58a6ff;cursor:pointer;font-family:inherit;">→ Ver validación global</button>
+          </div>
+        </div>
+
+      </div>
+
+      <div style="background:linear-gradient(135deg, rgba(88,166,255,.08) 0%, rgba(57,211,83,.06) 100%); border:1px solid var(--col-border); border-radius:var(--radius); padding:22px 26px;">
+        <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:12px;">📄 El resultado: Perfil de Proyecto con Justificación Técnica Irrefutable</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
+          <div style="background:rgba(255,255,255,.04);border-radius:var(--radius-sm);padding:14px;">
+            <div style="font-size:12px;color:var(--col-muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">Fuente de legitimación</div>
+            <div style="font-size:13.5px;font-weight:500;">TerriData + DANE</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border-radius:var(--radius-sm);padding:14px;">
+            <div style="font-size:12px;color:var(--col-muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">Evidencia de necesidad</div>
+            <div style="font-size:13.5px;font-weight:500;">IPM + MITI Datos Paz</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border-radius:var(--radius-sm);padding:14px;">
+            <div style="font-size:12px;color:var(--col-muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">Contexto territorial</div>
+            <div style="font-size:13.5px;font-weight:500;">SIAC + Colombia OT</div>
+          </div>
+          <div style="background:rgba(255,255,255,.04);border-radius:var(--radius-sm);padding:14px;">
+            <div style="font-size:12px;color:var(--col-muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">Justificación global</div>
+            <div style="font-size:13.5px;font-weight:500;">UNDP + OCDE · ODS 11</div>
+          </div>
+        </div>
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--col-border);font-size:13.5px;color:var(--col-muted);">
+          <strong style="color:var(--col-text);">Mensaje para el donante:</strong> Este no es un proyecto de buenas intenciones. Es una intervención con diagnóstico multidimensional verificable, área focalizada con criterios técnicos, viabilidad territorial validada en el POT y articulación obligatoria con el Plan de Desarrollo Municipal. Los datos territoriales no son el accesorio del proyecto de cooperación; son su cimiento fundamental.
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ══════════════ 3. TERRIDATA ══════════════ -->
+    <section class="platform-section c3" id="terridata">
+      <div class="platform-header">
+        <div class="platform-icon pi-bg">📈</div>
+        <div>
+          <div class="badge" style="background:rgba(63,185,80,.15);border-color:rgba(63,185,80,.4);color:#3fb950;margin-bottom:6px;">Estadísticas Territoriales</div>
+          <h2>TerriData — DNP</h2>
+          <div class="subtitle">Sistema de Estadísticas Territoriales · Departamento Nacional de Planeación</div>
+          <a class="platform-url" href="https://terridata.dnp.gov.co" target="_blank">🔗 terridata.dnp.gov.co</a>
+        </div>
+      </div>
+
+      <div class="tabs" id="tabs-terridata">
+        <button class="tab-btn active" onclick="switchTab('terridata','objetivo')">🎯 Objetivo</button>
+        <button class="tab-btn" onclick="switchTab('terridata','informacion')">📦 Información disponible</button>
+        <button class="tab-btn" onclick="switchTab('terridata','navegacion')">🧭 Cómo navegar</button>
+        <button class="tab-btn" onclick="switchTab('terridata','descarga')">⬇️ Descarga</button>
+        <button class="tab-btn" onclick="switchTab('terridata','cooperacion')">🤝 Uso en cooperación</button>
+      </div>
+
+      <div class="tab-panel active" id="terridata-objetivo">
+        <div class="cards-grid">
+          <div class="card"><h4>🎯 ¿Para qué sirve?</h4><p>Fortalecer la gestión pública con acceso a indicadores comparables para diagnóstico y formulación de proyectos territoriales. <strong>Es la fuente estadística municipal más completa de Colombia.</strong></p></div>
+          <div class="card"><h4>🌟 Característica clave</h4><p>Permite comparar cualquier municipio o departamento en más de 200 indicadores, con series históricas y visualizaciones de tendencia.</p></div>
+          <div class="card"><h4>🏛️ ¿Quién la opera?</h4><p>El <strong>DNP</strong>, articulando datos de DANE, MinSalud, MinEducación, ICBF, Superintendencias y otras entidades.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="terridata-informacion">
+        <table class="data-table">
+          <thead><tr><th>Sector</th><th>Indicadores destacados</th></tr></thead>
+          <tbody>
+            <tr><td>👶 Demografía</td><td>Población total, urbana/rural, densidad, pirámide etaria</td></tr>
+            <tr><td>💸 Pobreza</td><td>IPM (Índice de Pobreza Multidimensional), pobreza monetaria, Gini</td></tr>
+            <tr><td>🏫 Educación</td><td>Cobertura bruta y neta, deserción, resultado Saber 11</td></tr>
+            <tr><td>🏥 Salud</td><td>Mortalidad infantil, afiliación al sistema, IRA, EDA</td></tr>
+            <tr><td>🏦 Finanzas</td><td>Ingresos propios, transferencias SGP, gastos de inversión</td></tr>
+            <tr><td>🌿 Ambiente</td><td>Cobertura boscosa, deforestación, acceso a agua</td></tr>
+            <tr><td>🏠 Vivienda</td><td>Déficit cuantitativo y cualitativo, cobertura servicios públicos</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tab-panel" id="terridata-navegacion">
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Usa la sección "Fichas"</h4><p>Ingresa el nombre del municipio en el buscador. Obtendrás una <em>ficha de caracterización</em> con todos los indicadores disponibles para ese territorio.</p></div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Compara territorios</h4><p>Menú → <em>Comparaciones</em>: selecciona hasta 5 municipios o departamentos y elige el indicador. Verás una tabla comparativa y gráfica de barras.</p></div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Visualiza mapas de calor</h4><p>Menú → <em>Mapas de calor</em>: selecciona un indicador (p.ej. IPM) y el mapa mostrará la distribución nacional con escala de colores por intensidad.</p></div></div>
+          <div class="step"><div class="step-num">4</div><div class="step-content"><h4>Triage Poblacional</h4><p>Herramienta para identificar municipios con mayor rezago en múltiples dimensiones simultáneamente. Ideal para priorización.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="terridata-descarga">
+        <div class="cards-grid">
+          <div class="card"><h4>⬇️ Formatos disponibles</h4><ul><li>Excel (.xlsx) — completo con series históricas</li><li>CSV — para análisis en R, Python, Power BI</li><li>Visualizaciones descargables en PNG</li></ul></div>
+          <div class="card"><h4>📥 Cómo descargar</h4><p>En la ficha de cualquier municipio → botón <em>"Descargar"</em>. En la sección <em>Descargas</em> puedes obtener la base de datos completa nacional.</p></div>
+        </div>
+        <div class="tip-box">
+          <h4>💡 Tip para cooperación</h4>
+          <p>Descarga el Excel de la <strong>base completa</strong> en la sección Descargas → podrás filtrar y construir rankings para justificar la priorización de municipios en tu propuesta.</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="terridata-cooperacion">
+        <div class="highlight-box">
+          <h4>🤝 Aplicaciones en cooperación internacional</h4>
+          <ul>
+            <li><strong>Línea base del diagnóstico:</strong> cita el IPM, cobertura educativa o mortalidad infantil de los municipios focales con fuente oficial.</li>
+            <li><strong>Priorización cuantitativa:</strong> usa el <em>Triage Poblacional</em> para demostrar que los municipios elegidos son los de mayor rezago en múltiples dimensiones.</li>
+            <li><strong>Indicadores de resultado:</strong> define el indicador de TerriData que va a mejorar con el proyecto y establece la meta.</li>
+            <li><strong>Comparación con el promedio departamental/nacional:</strong> evidencia la brecha existente en el área de intervención.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ══════════════ 8. DATOS PAZ ══════════════ -->
+    <section class="platform-section c8" id="datos-paz">
+      <div class="platform-header">
+        <div class="platform-icon pi-bg">🕊️</div>
+        <div>
+          <div class="badge" style="background:rgba(121,192,255,.15);border-color:rgba(121,192,255,.4);color:#79c0ff;margin-bottom:6px;">Paz · Víctimas · DDHH</div>
+          <h2>Datos Paz — UARIV</h2>
+          <div class="subtitle">Unidad para las Víctimas · Red Nacional de Información</div>
+          <a class="platform-url" href="https://datospaz.unidadvictimas.gov.co" target="_blank">🔗 datospaz.unidadvictimas.gov.co</a>
+        </div>
+      </div>
+
+      <div class="tabs" id="tabs-datos-paz">
+        <button class="tab-btn active" onclick="switchTab('datos-paz','objetivo')">🎯 Objetivo</button>
+        <button class="tab-btn" onclick="switchTab('datos-paz','informacion')">📦 Información disponible</button>
+        <button class="tab-btn" onclick="switchTab('datos-paz','navegacion')">🧭 Cómo navegar</button>
+        <button class="tab-btn" onclick="switchTab('datos-paz','cooperacion')">🤝 Uso en cooperación</button>
+      </div>
+
+      <div class="tab-panel active" id="datos-paz-objetivo">
+        <div class="cards-grid">
+          <div class="card"><h4>🎯 ¿Para qué sirve?</h4><p>Ofrece herramientas, análisis y datos estratégicos para fortalecer procesos de reconciliación, reparación de víctimas y construcción de paz territorial en Colombia.</p></div>
+          <div class="card"><h4>📋 RUV — Registro Único de Víctimas</h4><p>El RUV es el registro oficial del Estado. Contiene información sobre el número de víctimas por municipio, hecho victimizante, año y estado de atención.</p></div>
+          <div class="card"><h4>⚠️ Nota ética</h4><p>Los datos son sensibles. El acceso a microdatos está restringido. Para análisis territoriales se usan datos agregados por municipio, que son de acceso público.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="datos-paz-informacion">
+        <div class="cards-grid">
+          <div class="card"><h4>📊 Estadísticas de víctimas</h4><ul><li>Total de víctimas por municipio</li><li>Hechos victimizantes (desplazamiento, homicidio, etc.)</li><li>Enfoque diferencial (género, étnico, niñez)</li><li>Series históricas 1985-presente</li></ul></div>
+          <div class="card"><h4>🏥 Atención y reparación</h4><ul><li>Atención humanitaria entregada</li><li>Indemnizaciones</li><li>Retornos y reubicaciones</li><li>Estado de superación de vulnerabilidad</li></ul></div>
+          <div class="card"><h4>📈 IGED — Indicadores de Goce Efectivo de Derechos</h4><ul><li>Derechos a la vida, libertad y seguridad</li><li>Derechos económicos, sociales y culturales</li><li>Restitución de tierras</li></ul></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="datos-paz-navegacion">
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Accede al Geoportal de Víctimas</h4><p>Menú → <em>Red Nacional de Información → Geoportal</em>. El mapa muestra la concentración de víctimas por municipio con escala de colores. Haz clic para ver la ficha.</p></div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Consulta reportes en el RUV</h4><p>Menú → <em>Red Nacional de Información → RUV</em>: permite generar reportes filtrados por municipio, hecho victimizante, año y enfoque diferencial.</p></div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Explora el visor IGED</h4><p>Para medir el <em>goce efectivo de derechos</em>, accede al visor IGED. Muestra por municipio qué derechos están siendo garantizados y cuáles presentan déficit.</p></div></div>
+          <div class="step"><div class="step-num">4</div><div class="step-content"><h4>Descarga reportes Power BI</h4><p>Los tableros Power BI permiten exportar gráficas y datos en PDF o Excel para incluirlos en diagnósticos o propuestas.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="datos-paz-cooperacion">
+        <div class="highlight-box">
+          <h4>🤝 Aplicaciones en cooperación internacional</h4>
+          <ul>
+            <li><strong>Diagnóstico de conflicto:</strong> cuantifica el impacto humanitario del conflicto armado en el área de intervención con datos oficiales.</li>
+            <li><strong>Enfoques diferenciales:</strong> identifica la presencia de comunidades indígenas, afrocolombianas o mujeres víctimas para proyectos de enfoque diferencial.</li>
+            <li><strong>IGED como línea base:</strong> establece el estado de goce de derechos antes del proyecto. Útil para proyectos de reparación colectiva.</li>
+            <li><strong>Desplazamiento:</strong> para proyectos de retorno y estabilización socioeconómica, cuantifica el número de familias desplazadas en el municipio.</li>
+            <li><strong>Superación de vulnerabilidad:</strong> mide la efectividad de intervenciones anteriores como referencia comparativa.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ══════════════ 11. ODS DANE ══════════════ -->
+    <section class="platform-section c11" id="ods-dane">
+      <div class="platform-header">
+        <div class="platform-icon pi-bg">🌐</div>
+        <div>
+          <div class="badge" style="background:rgba(227,179,65,.15);border-color:rgba(227,179,65,.4);color:#e3b341;margin-bottom:6px;">Agenda 2030 · ODS</div>
+          <h2>Portal de Datos ODS — DANE</h2>
+          <div class="subtitle">Monitoreo de los Objetivos de Desarrollo Sostenible · Agenda 2030</div>
+          <a class="platform-url" href="https://ods.dane.gov.co" target="_blank">🔗 ods.dane.gov.co</a>
+        </div>
+      </div>
+
+      <div class="tabs" id="tabs-ods-dane">
+        <button class="tab-btn active" onclick="switchTab('ods-dane','objetivo')">🎯 Objetivo</button>
+        <button class="tab-btn" onclick="switchTab('ods-dane','informacion')">📦 Información disponible</button>
+        <button class="tab-btn" onclick="switchTab('ods-dane','navegacion')">🧭 Cómo navegar</button>
+        <button class="tab-btn" onclick="switchTab('ods-dane','cooperacion')">🤝 Uso en cooperación</button>
+      </div>
+
+      <div class="tab-panel active" id="ods-dane-objetivo">
+        <div class="cards-grid">
+          <div class="card"><h4>🎯 ¿Para qué sirve?</h4><p>Realiza el seguimiento y monitoreo oficial de los <strong>indicadores de los 17 ODS</strong> (Agenda 2030) a nivel nacional. Es la plataforma de rendición de cuentas de Colombia ante Naciones Unidas.</p></div>
+          <div class="card"><h4>🌟 ¿Por qué es clave para cooperación?</h4><p>Toda cooperación internacional relevante está alineada con los ODS. Esta plataforma te permite demostrar en qué medida Colombia avanza o rezaga en cada meta y cómo tu proyecto contribuye.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="ods-dane-informacion">
+        <div class="cards-grid">
+          <div class="card"><h4>📊 Cobertura</h4><ul><li>17 ODS · 169 metas</li><li>232+ indicadores globales</li><li>Clasificados por TIER (I, II, III)</li><li>Fichas técnicas y metodológicas</li></ul></div>
+          <div class="card"><h4>📉 Barómetro de avance</h4><p>Muestra el porcentaje de avance de Colombia en cada indicador con semáforos de progreso: en camino, con rezago o sin datos.</p></div>
+          <div class="card"><h4>🗺️ Mapas de calor departamentales</h4><p>Para indicadores con desagregación territorial, muestra la distribución por departamentos. Útil para evidenciar brechas regionales.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="ods-dane-navegacion">
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Selecciona el ODS relevante</h4><p>La página de inicio muestra los 17 ODS como íconos. Haz clic en el que corresponda a tu proyecto (ej. ODS 2 para seguridad alimentaria, ODS 4 para educación).</p></div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Explora las metas e indicadores</h4><p>Cada ODS despliega sus metas y los indicadores disponibles para Colombia. Los TIER I son los de mejor calidad estadística.</p></div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Usa el Barómetro</h4><p>El barómetro muestra de forma visual el estado de avance global. Descarga la visualización o el dato para incluirlo en el diagnóstico del proyecto.</p></div></div>
+          <div class="step"><div class="step-num">4</div><div class="step-content"><h4>Descarga las bases de datos</h4><p>Cada indicador tiene la opción de descargar la base de datos actualizada con las actualizaciones periódicas del DANE y entidades articuladas.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="ods-dane-cooperacion">
+        <div class="highlight-box">
+          <h4>🤝 Aplicaciones en cooperación internacional</h4>
+          <ul>
+            <li><strong>Marco de alineación:</strong> identifica en qué ODS, meta e indicador se inserta el proyecto. Esto es <em>requisito</em> de la mayoría de donantes multilaterales.</li>
+            <li><strong>Brecha de indicadores:</strong> si Colombia tiene un indicador ODS rezagado, es una oportunidad clara para un proyecto de cooperación.</li>
+            <li><strong>Indicadores de impacto:</strong> usa los indicadores ODS oficiales como métricas de impacto del proyecto para alinear con agendas globales.</li>
+            <li><strong>Comunicación con donantes:</strong> los donantes ONU, UE y bilaterales entienden el lenguaje ODS. Citar avances/rezagos facilita la conversación.</li>
+            <li><strong>Evidencia de necesidad:</strong> indicadores TIER I en rezago son evidencia irrefutable de necesidad de intervención.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ══════════════ 9. SISPT ══════════════ -->
+    <section class="platform-section c9" id="sispt">
+      <div class="platform-header">
+        <div class="platform-icon pi-bg">📋</div>
+        <div>
+          <div class="badge" style="background:rgba(210,168,255,.15);border-color:rgba(210,168,255,.4);color:#d2a8ff;margin-bottom:6px;">Planificación · PDT</div>
+          <h2>SisPT — DNP</h2>
+          <div class="subtitle">Sistema de Información para los Planes de Desarrollo Territorial</div>
+          <a class="platform-url" href="https://sispt.dnp.gov.co" target="_blank">🔗 sispt.dnp.gov.co</a>
+        </div>
+      </div>
+
+      <div class="tabs" id="tabs-sispt">
+        <button class="tab-btn active" onclick="switchTab('sispt','objetivo')">🎯 Objetivo</button>
+        <button class="tab-btn" onclick="switchTab('sispt','informacion')">📦 Información disponible</button>
+        <button class="tab-btn" onclick="switchTab('sispt','navegacion')">🧭 Cómo navegar</button>
+        <button class="tab-btn" onclick="switchTab('sispt','cooperacion')">🤝 Uso en cooperación</button>
+      </div>
+
+      <div class="tab-panel active" id="sispt-objetivo">
+        <div class="cards-grid">
+          <div class="card"><h4>🎯 ¿Para qué sirve?</h4><p>Brinda insumos y herramientas digitales para que alcaldías y gobernaciones formulen y hagan seguimiento a sus <strong>Planes de Desarrollo Territorial (PDT)</strong>.</p></div>
+          <div class="card"><h4>📅 Cuándo usarla</h4><p>Especialmente relevante en años de transición de gobierno (2024-2027), cuando los nuevos alcaldes formulan sus PDT. Permite alinear proyectos de cooperación con las prioridades municipales oficiales.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="sispt-informacion">
+        <div class="cards-grid">
+          <div class="card"><h4>📑 Insumos para formulación</h4><ul><li>Diagnósticos territoriales estructurados</li><li>Lineamientos de política pública nacional</li><li>Guías metodológicas del DNP</li><li>Instrumentos de participación ciudadana</li></ul></div>
+          <div class="card"><h4>📊 Herramienta de seguimiento</h4><ul><li>Indicadores de producto y resultado del PDT</li><li>Avance de metas por sector</li><li>Tableros de control</li><li>Módulos de caracterización</li></ul></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="sispt-navegacion">
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Accede a Insumos para Formulación</h4><p>Primera sección de la plataforma. Contiene diagnósticos por municipio organizados en dimensiones (social, económica, ambiental, institucional).</p></div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Consulta el PDT del municipio</h4><p>En la <em>Herramienta de Formulación</em> puedes ver las metas registradas por el municipio, los indicadores de producto y el estado de avance reportado.</p></div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Descarga boletines y reportes</h4><p>La sección de <em>Reportes</em> permite descargar el estado de cumplimiento del PDT por municipio, sector y año.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="sispt-cooperacion">
+        <div class="highlight-box">
+          <h4>🤝 Aplicaciones en cooperación internacional</h4>
+          <ul>
+            <li><strong>Alineación con el PDT:</strong> demuestra que el proyecto contribuye a las metas del Plan de Desarrollo municipal. Esto aumenta las posibilidades de cofinanciación y sostenibilidad.</li>
+            <li><strong>Diagnóstico de brechas:</strong> los diagnósticos del SisPT son una fuente estructurada de información para el marco lógico del proyecto.</li>
+            <li><strong>Indicadores compartidos:</strong> adopta los indicadores del PDT como indicadores del proyecto para facilitar el reporte y el seguimiento conjunto.</li>
+            <li><strong>Credibilidad ante donantes:</strong> citar que el proyecto está articulado con el instrumento de planificación oficial del municipio demuestra coherencia institucional.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ══════════════ 7. SIAC ══════════════ -->
+    <section class="platform-section c7" id="siac">
+      <div class="platform-header">
+        <div class="platform-icon pi-bg">🌳</div>
+        <div>
+          <div class="badge" style="background:rgba(255,166,87,.15);border-color:rgba(255,166,87,.4);color:#ffa657;margin-bottom:6px;">Ambiental · Biodiversidad</div>
+          <h2>SIAC — Sistema de Información Ambiental de Colombia</h2>
+          <div class="subtitle">MinAmbiente · IDEAM · PNN · Humboldt</div>
+          <a class="platform-url" href="https://www.siac.gov.co" target="_blank">🔗 www.siac.gov.co</a>
+        </div>
+      </div>
+
+      <div class="tabs" id="tabs-siac">
+        <button class="tab-btn active" onclick="switchTab('siac','objetivo')">🎯 Objetivo</button>
+        <button class="tab-btn" onclick="switchTab('siac','informacion')">📦 Información disponible</button>
+        <button class="tab-btn" onclick="switchTab('siac','navegacion')">🧭 Cómo navegar</button>
+        <button class="tab-btn" onclick="switchTab('siac','cooperacion')">🤝 Uso en cooperación</button>
+      </div>
+
+      <div class="tab-panel active" id="siac-objetivo">
+        <div class="cards-grid">
+          <div class="card"><h4>🎯 ¿Para qué sirve?</h4><p>Facilita la generación de conocimiento y participación social para el desarrollo sostenible mediante la gestión de información ambiental integrada de Colombia.</p></div>
+          <div class="card"><h4>🌿 Subsistemas especializados</h4><ul><li><strong>SIB:</strong> Sistema de Información de Biodiversidad</li><li><strong>SINAP:</strong> Sistema Nacional de Áreas Protegidas</li><li><strong>SIRH:</strong> Recursos Hídricos</li><li><strong>IDEAM:</strong> Meteorología y clima</li></ul></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="siac-informacion">
+        <div class="cards-grid">
+          <div class="card"><h4>🌱 Biodiversidad</h4><ul><li>Especies registradas y amenazadas</li><li>Coberturas de la tierra</li><li>Deforestación anual</li><li>Negocios verdes</li></ul></div>
+          <div class="card"><h4>💧 Agua</h4><ul><li>Oferta hídrica por cuenca</li><li>Calidad del agua</li><li>Índice de vulnerabilidad hídrica</li><li>Caudales y precipitación</li></ul></div>
+          <div class="card"><h4>🌡️ Clima y gestión ambiental</h4><ul><li>Índice de calidad del aire</li><li>Áreas protegidas (SINAP)</li><li>Indicadores de gestión ambiental regional</li><li>Cambio climático y adaptación</li></ul></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="siac-navegacion">
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Accede al Geovisor Ambiental</h4><p>Desde el menú <em>Servicios Estratégicos → Geovisor Ambiental</em>. Permite visualizar áreas protegidas, coberturas de tierra, cuencas hidrográficas y zonas de deforestación.</p></div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Explora indicadores en "Ambiente y Gestión"</h4><p>Esta sección organiza los datos por temática: <em>Biodiversidad, Bosques, Agua, Suelo, Aire, Cambio climático</em>. Cada indicador tiene ficha técnica y datos descargables.</p></div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Ingresa a subsistemas especializados</h4><p>Para biodiversidad usa el <strong>SIB Colombia</strong> (sibcolombia.net). Para áreas protegidas, el <strong>RUNAP en SINAP</strong>. Cada subsistema tiene su propio visor y catálogo de datos.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="siac-cooperacion">
+        <div class="highlight-box">
+          <h4>🤝 Aplicaciones en cooperación internacional</h4>
+          <ul>
+            <li><strong>Proyectos de conservación:</strong> georreferencia las áreas protegidas y zonas de amortiguación donde se interviene.</li>
+            <li><strong>Deforestación:</strong> datos del IDEAM sobre tasas de deforestación para proyectos de reducción de emisiones (REDD+).</li>
+            <li><strong>Acceso a agua:</strong> indicadores de vulnerabilidad hídrica para proyectos de WASH (agua, saneamiento e higiene).</li>
+            <li><strong>ODS 13, 14 y 15:</strong> vincula tu proyecto con los ODS de acción climática, vida submarina y ecosistemas terrestres usando datos del SIAC.</li>
+            <li><strong>Línea base ambiental:</strong> deforestación histórica, cobertura boscosa y calidad del agua del área focal.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ══════════════ 2. COLOMBIA OT ══════════════ -->
+    <section class="platform-section c2" id="colombia-ot">
+      <div class="platform-header">
+        <div class="platform-icon pi-bg">🏘️</div>
+        <div>
+          <div class="badge" style="background:rgba(88,166,255,.15);border-color:rgba(88,166,255,.4);color:#58a6ff;margin-bottom:6px;">Ordenamiento Territorial</div>
+          <h2>Colombia OT</h2>
+          <div class="subtitle">Plataforma de Planes de Ordenamiento Territorial · DNP / MVCT</div>
+          <a class="platform-url" href="https://colombiaot.gov.co" target="_blank">🔗 colombiaot.gov.co</a>
+        </div>
+      </div>
+
+      <div class="tabs" id="tabs-colombia-ot">
+        <button class="tab-btn active" onclick="switchTab('colombia-ot','objetivo')">🎯 Objetivo</button>
+        <button class="tab-btn" onclick="switchTab('colombia-ot','informacion')">📦 Información disponible</button>
+        <button class="tab-btn" onclick="switchTab('colombia-ot','navegacion')">🧭 Cómo navegar</button>
+        <button class="tab-btn" onclick="switchTab('colombia-ot','descarga')">⬇️ Descarga y formatos</button>
+        <button class="tab-btn" onclick="switchTab('colombia-ot','cooperacion')">🤝 Uso en cooperación</button>
+      </div>
+
+      <div class="tab-panel active" id="colombia-ot-objetivo">
+        <div class="cards-grid">
+          <div class="card"><h4>🎯 ¿Para qué sirve?</h4><p>Orienta el desarrollo, transformación y ocupación del espacio, empoderando a entes territoriales en la planeación física y gestión del ordenamiento territorial.</p></div>
+          <div class="card"><h4>📍 Qué encontrarás</h4><p>Los POT (Planes de Ordenamiento Territorial), PBOT y EOT de <strong>municipios de todo el país</strong>, con sus determinantes legales, clasificación de suelo y usos permitidos.</p></div>
+          <div class="card"><h4>🏛️ ¿Quién la opera?</h4><p>El <strong>DNP</strong> (Departamento Nacional de Planeación) y el <strong>Ministerio de Vivienda</strong>, articulando información de más de 1.000 municipios.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="colombia-ot-informacion">
+        <div class="cards-grid">
+          <div class="card"><h4>📑 Documentos POT</h4><ul><li>Acuerdos municipales del POT</li><li>Diagnósticos territoriales</li><li>Normas urbanísticas</li><li>Determinantes ambientales</li></ul></div>
+          <div class="card"><h4>🗺️ Cartografía de uso del suelo</h4><ul><li>342 capas de datos vivos</li><li>Clasificación de suelo urbano/rural/expansión</li><li>Usos del suelo y tratamientos</li><li>Áreas de amenaza y riesgo</li></ul></div>
+          <div class="card"><h4>📊 Indicadores OT</h4><ul><li>Estado de actualización del POT</li><li>Vigencia del instrumento</li><li>Caracterizaciones municipales</li><li>Participación y concertación</li></ul></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="colombia-ot-navegacion">
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Accede al Tablero OT</h4><p>En la página de inicio verás el <em>Tablero OT</em> con cifras nacionales. Haz clic en el mapa para seleccionar un departamento o municipio.</p></div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Consulta Los POT del País</h4><p>Menú → <em>Los POT del País</em>: busca por nombre del municipio o código DIVIPOLA. Verás el estado del POT (vigente, en revisión, desactualizado) y los documentos disponibles.</p></div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Explora el visor de uso del suelo</h4><p>En la sección de <em>Datos</em> o directamente desde el tablero, activa el visor cartográfico de uso del suelo. Puedes filtrar por municipio y tipo de suelo.</p></div></div>
+          <div class="step"><div class="step-num">4</div><div class="step-content"><h4>Descarga datos y cartillas</h4><p>Menú → <em>Otros recursos</em>: accede a cartillas técnicas, normatividad vigente (Ley 388/97, Decreto 1232, etc.) y datos en formato descargable.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="colombia-ot-descarga">
+        <div class="cards-grid">
+          <div class="card"><h4>📥 Qué puedes descargar</h4><ul><li>342 capas de datos de uso del suelo</li><li>Documentos de POT en PDF</li><li>Cartillas técnicas de OT</li><li>Normatividad en PDF</li></ul></div>
+          <div class="card"><h4>📋 Sección "Cargue"</h4><p>Permite a entidades municipales subir o actualizar la información de sus POT. Si estás acompañando un municipio, puedes verificar si la información está al día.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="colombia-ot-cooperacion">
+        <div class="highlight-box">
+          <h4>🤝 Aplicaciones en cooperación internacional</h4>
+          <ul>
+            <li><strong>Clasificación del suelo:</strong> identifica si las comunidades objetivo están en suelo rural, de expansión o zonas de riesgo para proyectos de vivienda o desarrollo rural.</li>
+            <li><strong>Alineación con el POT:</strong> demuestra que el proyecto está articulado con el instrumento de ordenamiento vigente del municipio.</li>
+            <li><strong>Brecha de actualización:</strong> si el POT está desactualizado, eso es un argumento para intervención técnica de fortalecimiento institucional.</li>
+            <li><strong>Usos del suelo:</strong> para proyectos agrícolas, valida la compatibilidad de las actividades propuestas con el uso permitido.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ══════════════ 1. ICDE ══════════════ -->
+    <section class="platform-section c1" id="icde">
+      <div class="platform-header">
+        <div class="platform-icon pi-bg">🗺️</div>
+        <div>
+          <div class="badge" style="background:rgba(245,166,35,.15);border-color:rgba(245,166,35,.4);color:#f5a623;margin-bottom:6px;">Infraestructura de Datos Espaciales</div>
+          <h2>ICDE — Infraestructura Colombiana de Datos Espaciales</h2>
+          <div class="subtitle">Portal Geográfico Nacional · IGACorg</div>
+          <a class="platform-url" href="https://www.icde.gov.co" target="_blank">🔗 www.icde.gov.co</a>
+        </div>
+      </div>
+
+      <div class="tabs" id="tabs-icde">
+        <button class="tab-btn active" onclick="switchTab('icde','objetivo')">🎯 Objetivo</button>
+        <button class="tab-btn" onclick="switchTab('icde','informacion')">📦 Información disponible</button>
+        <button class="tab-btn" onclick="switchTab('icde','navegacion')">🧭 Cómo navegar</button>
+        <button class="tab-btn" onclick="switchTab('icde','descarga')">⬇️ Descarga y formatos</button>
+        <button class="tab-btn" onclick="switchTab('icde','cooperacion')">🤝 Uso en cooperación</button>
+      </div>
+
+      <div class="tab-panel active" id="icde-objetivo">
+        <div class="cards-grid">
+          <div class="card">
+            <h4>🎯 ¿Para qué sirve?</h4>
+            <p>Integra y dispone información geográfica oficial y estandarizada para promover la generación de valor en el territorio y la coordinación de políticas públicas a nivel nacional.</p>
+          </div>
+          <div class="card">
+            <h4>👥 ¿A quién va dirigida?</h4>
+            <p>Entidades públicas, planificadores territoriales, académicos, ONG y organizaciones de cooperación que necesiten cartografía oficial de referencia.</p>
+          </div>
+          <div class="card">
+            <h4>🏛️ ¿Quién la opera?</h4>
+            <p>El <strong>IGAC</strong> (Instituto Geográfico Agustín Codazzi) como nodo coordinador, articulando múltiples entidades del orden nacional.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="icde-informacion">
+        <div class="cards-grid">
+          <div class="card">
+            <h4>📐 Datos fundamentales</h4>
+            <ul>
+              <li>Sistema geodésico nacional</li>
+              <li>Catastro multipropósito</li>
+              <li>Relieve y topografía</li>
+              <li>Redes de transporte</li>
+              <li>División político-administrativa</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>🌐 Geoservicios</h4>
+            <ul>
+              <li>Servicios WMS (mapas en la web)</li>
+              <li>Servicios WFS (datos vectoriales)</li>
+              <li>Servicios WMTS (mapas en teselas)</li>
+              <li>Catálogo CSW de metadatos</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>🗂️ Capas sectoriales</h4>
+            <ul>
+              <li>Datos georreferenciados de entidades públicas</li>
+              <li>Áreas protegidas</li>
+              <li>Zonas de riesgo</li>
+              <li>Infraestructura social</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="icde-navegacion">
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Ingresa al Portal Geográfico Nacional (Geovisor)</h4>
+              <p>Ve a <strong>www.icde.gov.co</strong> → haz clic en <em>"Portal Geográfico Nacional"</em> o en la sección <em>Servicios → Geovisor</em>. El mapa base cargará automáticamente.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Activa capas geográficas</h4>
+              <p>En el panel lateral izquierdo verás el árbol de capas. Despliega las categorías (p.ej. <em>Catastro, Ambiente, Vías</em>) y activa el ojo 👁️ de las que necesitas.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Navega por el menú principal</h4>
+              <p><strong>Marcos:</strong> datos de referencia base · <strong>Datos:</strong> capas sectoriales · <strong>Recursos/Gestión:</strong> estándares y documentación · <strong>Servicios:</strong> endpoints WMS/WFS · <strong>Conocimiento:</strong> guías.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Usa las herramientas de consulta</h4>
+              <p>Haz clic sobre cualquier polígono del mapa para ver su tabla de atributos. Usa los filtros en el panel de tablas para seleccionar municipios específicos.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="icde-descarga">
+        <div class="cards-grid">
+          <div class="card">
+            <h4>📄 Formatos de descarga</h4>
+            <ul>
+              <li>Shapefiles (.shp) — para QGIS/ArcGIS</li>
+              <li>GeoJSON — para visualización web</li>
+              <li>KML/KMZ — para Google Earth</li>
+              <li>GeoTIFF — para imágenes raster</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>⚙️ Geoservicios para sistemas externos</h4>
+            <ul>
+              <li><strong>WMS:</strong> imágenes de capas para incrustar</li>
+              <li><strong>WFS:</strong> datos vectoriales editables</li>
+              <li><strong>WMTS:</strong> mosaicos de alta velocidad</li>
+              <li><strong>CSW:</strong> catálogo de metadatos</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h4>📜 Licencia</h4>
+            <p>Los archivos se publican bajo <strong>Creative Commons CC-BY 4.0</strong>: puedes usar, redistribuir y adaptar con atribución al IGAC/entidad fuente.</p>
+          </div>
+        </div>
+        <div class="tip-box">
+          <h4>💡 Tip para principiantes</h4>
+          <p>Si no tienes experiencia con SIG, el Geovisor te permite hacer capturas de pantalla con capas activas. Para proyectos de cooperación, puedes exportar el mapa como imagen PDF desde el menú <em>Imprimir mapa</em>.</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="icde-cooperacion">
+        <div class="highlight-box">
+          <h4>🤝 Aplicaciones en cooperación internacional</h4>
+          <ul>
+            <li><strong>Delimitación de área de intervención:</strong> obtén los polígonos oficiales de los municipios objetivo con sus límites y códigos DIVIPOLA.</li>
+            <li><strong>Mapas de accesibilidad:</strong> usa la capa de vías para argumentar dificultades de acceso en zonas rurales.</li>
+            <li><strong>Catastro:</strong> si el proyecto involucra tierras o titulación, referencia el catastro multipropósito.</li>
+            <li><strong>Cartografía temática:</strong> combina capas de catastro + uso del suelo + zonas de riesgo para diagnósticos multidimensionales.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ══════════════ 6. MAPAINVERSIONES ══════════════ -->
+    <section class="platform-section c6" id="mapainversiones">
+      <div class="platform-header">
+        <div class="platform-icon pi-bg">💼</div>
+        <div>
+          <div class="badge" style="background:rgba(57,211,83,.15);border-color:rgba(57,211,83,.4);color:#39d353;margin-bottom:6px;">Inversión Pública · Transparencia</div>
+          <h2>MapaInversiones — DNP</h2>
+          <div class="subtitle">Visualización Geográfica y Financiera de la Inversión Pública</div>
+          <a class="platform-url" href="https://mapainversiones.dnp.gov.co" target="_blank">🔗 mapainversiones.dnp.gov.co</a>
+        </div>
+      </div>
+
+      <div class="tabs" id="tabs-mapainversiones">
+        <button class="tab-btn active" onclick="switchTab('mapainversiones','objetivo')">🎯 Objetivo</button>
+        <button class="tab-btn" onclick="switchTab('mapainversiones','informacion')">📦 Información disponible</button>
+        <button class="tab-btn" onclick="switchTab('mapainversiones','navegacion')">🧭 Cómo navegar</button>
+        <button class="tab-btn" onclick="switchTab('mapainversiones','cooperacion')">🤝 Uso en cooperación</button>
+      </div>
+
+      <div class="tab-panel active" id="mapainversiones-objetivo">
+        <div class="cards-grid">
+          <div class="card"><h4>🎯 ¿Para qué sirve?</h4><p>Permite la visualización geográfica y financiera de la inversión pública para seguimiento, control social y transparencia institucional. Muestra <em>dónde</em> y <em>cuánto</em> se invierte.</p></div>
+          <div class="card"><h4>💡 Dato clave</h4><p>Integra los proyectos del <strong>SGR</strong> (regalías), el <strong>PGN</strong> (presupuesto nacional), contratos SECOP y producción de recursos naturales en un solo visor geográfico.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="mapainversiones-informacion">
+        <div class="cards-grid">
+          <div class="card"><h4>💰 Proyectos de inversión</h4><ul><li>Proyectos SGR por municipio</li><li>Proyectos PGN federales</li><li>Estado de ejecución (aprobado, en ejecución, terminado)</li><li>Valor total y ejecutado</li></ul></div>
+          <div class="card"><h4>⛏️ Recursos naturales</h4><ul><li>Producción de petróleo, gas y minería</li><li>Regalías generadas y distribuidas</li><li>Fiscalización de minas</li><li>Distribución territorial de regalías</li></ul></div>
+          <div class="card"><h4>🔓 Datos abiertos integrados</h4><ul><li>Contratación pública (SECOP)</li><li>Archivos de fuentes de información</li><li>Reportes en Excel descargables</li></ul></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="mapainversiones-navegacion">
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Explora el mapa de proyectos</h4><p>En la página de inicio, el mapa ya muestra proyectos georeferenciados. Haz zoom en el área de interés. Los puntos de colores representan diferentes estados de los proyectos.</p></div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Filtra por sector y fuente</h4><p>Menú → <em>Proyectos de inversión</em>: filtra por sector (educación, salud, agua), fuente (SGR, PGN), vigencia y estado de ejecución.</p></div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Analiza los recursos de inversión</h4><p>Menú → <em>Recursos de inversión</em>: tablero de control que muestra totales por departamento y municipio, con gráficas comparativas.</p></div></div>
+          <div class="step"><div class="step-num">4</div><div class="step-content"><h4>Descarga el reporte</h4><p>Desde cada sección hay opción de exportar a Excel. En <em>Datos abiertos</em> puedes descargar el repositorio completo de proyectos.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="mapainversiones-cooperacion">
+        <div class="highlight-box">
+          <h4>🤝 Aplicaciones en cooperación internacional</h4>
+          <ul>
+            <li><strong>Análisis de inversión histórica:</strong> demuestra si el Estado ha invertido en las áreas del proyecto. Baja inversión previa refuerza el argumento de necesidad.</li>
+            <li><strong>Complementariedad:</strong> identifica proyectos públicos existentes con los que el proyecto de cooperación puede articularse o evitar duplicidades.</li>
+            <li><strong>Sectores prioritarios:</strong> contrasta la inversión real en educación o salud vs. las brechas estadísticas para evidenciar déficit de política pública.</li>
+            <li><strong>Regalías:</strong> para municipios productores de minerales, analiza cómo se han usado las regalías y si han reducido brechas.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ══════════════ 5. CIFFIT ══════════════ -->
+    <section class="platform-section c5" id="ciffit">
+      <div class="platform-header">
+        <div class="platform-icon pi-bg">💰</div>
+        <div>
+          <div class="badge" style="background:rgba(255,123,114,.15);border-color:rgba(255,123,114,.4);color:#ff7b72;margin-bottom:6px;">Fiscal · Financiero</div>
+          <h2>CIFFIT — DNP</h2>
+          <div class="subtitle">Consolidación de Información Fiscal y Financiera Territorial</div>
+          <a class="platform-url" href="https://ciffit.dnp.gov.co/ciffit/?aspxerrorpath=/ciffit/WebPages/Consulta/ConsultasIDF" target="_blank">🔗 ciffit.dnp.gov.co</a>
+        </div>
+      </div>
+
+      <div class="tabs" id="tabs-ciffit">
+        <button class="tab-btn active" onclick="switchTab('ciffit','objetivo')">🎯 Objetivo</button>
+        <button class="tab-btn" onclick="switchTab('ciffit','informacion')">📦 Información disponible</button>
+        <button class="tab-btn" onclick="switchTab('ciffit','navegacion')">🧭 Cómo navegar</button>
+        <button class="tab-btn" onclick="switchTab('ciffit','cooperacion')">🤝 Uso en cooperación</button>
+      </div>
+
+      <div class="tab-panel active" id="ciffit-objetivo">
+        <div class="cards-grid">
+          <div class="card"><h4>🎯 ¿Para qué sirve?</h4><p>Consolida y visualiza la información fiscal y financiera territorial para análisis de sostenibilidad, desempeño fiscal y planeación. Calcula el <strong>Índice de Desempeño Fiscal (IDF)</strong>.</p></div>
+          <div class="card"><h4>📊 IDF — Índice de Desempeño Fiscal</h4><p>Clasifica a los municipios en categorías de desempeño fiscal: <em>Sostenible, Solvente, Vulnerable, Riesgo y Deterioro</em>. Fundamental para evaluar capacidad institucional.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="ciffit-informacion">
+        <div class="cards-grid">
+          <div class="card"><h4>📑 Fuentes de datos integradas</h4><ul><li>CUIPO (reporte catastro fiscal)</li><li>SGR (Sistema General de Regalías)</li><li>FUT (Formulario Único Territorial)</li><li>Ejecuciones presupuestales</li></ul></div>
+          <div class="card"><h4>📈 Indicadores del IDF</h4><ul><li>Autofinanciamiento del funcionamiento</li><li>Respaldo deuda/ingresos</li><li>Dependencia de transferencias</li><li>Capacidad de ahorro</li><li>Magnitud de la inversión</li></ul></div>
+          <div class="card"><h4>⏱️ Cobertura temporal</h4><p>Series desde 2008 hasta el último año certificado. Permite análisis de tendencia fiscal municipal.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="ciffit-navegacion">
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Accede al Visor IDF</h4><p>Desde el portal DNP → <em>Desarrollo Territorial → Información fiscal</em>, o busca directamente <em>"IDF DNP visor"</em>. El mapa interactivo mostrará la categoría de desempeño de cada municipio.</p></div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Selecciona vigencia y entidad</h4><p>Usa el filtro de <em>Vigencia fiscal</em> para seleccionar el año. Luego haz clic en el municipio de interés para ver su ficha IDF.</p></div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Compara entidades</h4><p>La herramienta de <em>comparación</em> permite contrastar el desempeño fiscal de varios municipios simultáneamente en un gráfico de barras.</p></div></div>
+          <div class="step"><div class="step-num">4</div><div class="step-content"><h4>Descarga el reporte</h4><p>Descarga los <em>documentos de resultados IDF</em> y el <em>Excel de ejecuciones presupuestales</em> para el análisis detallado.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="ciffit-cooperacion">
+        <div class="highlight-box">
+          <h4>🤝 Aplicaciones en cooperación internacional</h4>
+          <ul>
+            <li><strong>Capacidad institucional local:</strong> el IDF evidencia si el municipio tiene capacidad de cofinanciar o ejecutar proyectos. Un IDF bajo puede justificar asistencia técnica.</li>
+            <li><strong>Regla de Riesgo y Deterioro:</strong> si el municipio está en esas dos categorías, diseña la sostenibilidad sin depender de la contrapartida fiscal local. Es una medida de mitigación ante el BID o el Banco Mundial.</li>
+            <li><strong>Sostenibilidad fiscal:</strong> demuestra que el municipio puede sostener los resultados del proyecto después del cierre de la cooperación.</li>
+            <li><strong>Análisis de inversión local:</strong> contrasta la inversión pública municipal con las brechas sociales para argumentar necesidad de cooperación.</li>
+            <li><strong>Dependencia de transferencias:</strong> municipios con alta dependencia de SGP y baja capacidad de ingresos propios son candidatos prioritarios para fortalecimiento institucional.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ══════════════ 4. DATOS ABIERTOS ══════════════ -->
+    <section class="platform-section c4" id="datos-abiertos">
+      <div class="platform-header">
+        <div class="platform-icon pi-bg">🔓</div>
+        <div>
+          <div class="badge" style="background:rgba(188,140,255,.15);border-color:rgba(188,140,255,.4);color:#bc8cff;margin-bottom:6px;">Portal Nacional · MinTIC</div>
+          <h2>Portal de Datos Abiertos de Colombia</h2>
+          <div class="subtitle">datos.gov.co · Iniciativa de Gobierno Abierto · Ley 1712 de 2014</div>
+          <a class="platform-url" href="https://www.datos.gov.co" target="_blank">🔗 www.datos.gov.co</a>
+        </div>
+      </div>
+
+      <div class="tabs" id="tabs-datos-abiertos">
+        <button class="tab-btn active" onclick="switchTab('datos-abiertos','objetivo')">🎯 Objetivo</button>
+        <button class="tab-btn" onclick="switchTab('datos-abiertos','informacion')">📦 Qué encontrarás</button>
+        <button class="tab-btn" onclick="switchTab('datos-abiertos','navegacion')">🧭 Cómo navegar</button>
+        <button class="tab-btn" onclick="switchTab('datos-abiertos','descarga')">⬇️ Descarga</button>
+        <button class="tab-btn" onclick="switchTab('datos-abiertos','cooperacion')">🤝 Uso en cooperación</button>
+      </div>
+
+      <div class="tab-panel active" id="datos-abiertos-objetivo">
+        <div class="cards-grid">
+          <div class="card"><h4>🎯 ¿Para qué sirve?</h4><p>Es el repositorio central del Estado colombiano donde más de 600 entidades públicas publican sus conjuntos de datos bajo licencias abiertas para que cualquier ciudadano pueda acceder, reutilizar y redistribuir sin restricciones.</p></div>
+          <div class="card"><h4>📜 Marco legal</h4><p>La <strong>Ley 1712 de 2014</strong> (Transparencia y Acceso a la Información) obliga a las entidades públicas a publicar datos en formatos abiertos e interoperables.</p></div>
+          <div class="card"><h4>🔑 Registro</h4><p><strong>No necesitas registrarte</strong> para consultar o descargar datos. El registro solo es necesario para publicar, sugerir conjuntos o crear visualizaciones en el portal.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="datos-abiertos-informacion">
+        <div class="cards-grid">
+          <div class="card"><h4>🏛️ Sectores con más datos</h4><ul><li>Educación (MEN, ICFES)</li><li>Salud (MinSalud, INS)</li><li>Economía y finanzas (DIAN, MinHacienda)</li><li>Justicia y seguridad (FGN, Policía)</li><li>Vivienda y territorio (MVCT)</li><li>Agricultura (MADR, UPRA)</li></ul></div>
+          <div class="card"><h4>🗺️ Datos geoespaciales</h4><ul><li>Coordenadas de infraestructura social</li><li>Mapas de cobertura de servicios</li><li>Registros de proyectos por municipio</li><li>Servicios enlazados a la ICDE</li></ul></div>
+          <div class="card"><h4>📊 Tipos de conjuntos</h4><ul><li>Tablas estadísticas</li><li>Registros administrativos</li><li>Series de tiempo</li><li>Microdata de encuestas</li><li>Documentos y reportes</li></ul></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="datos-abiertos-navegacion">
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-content"><h4>Busca en el buscador principal</h4><p>Escribe palabras clave en el buscador (ej: <em>"cobertura educativa municipios"</em> o <em>"índice pobreza rural"</em>). Los resultados aparecen clasificados por entidad y tipo.</p></div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-content"><h4>Filtra por categoría y entidad</h4><p>En el panel izquierdo usa los filtros de <em>Categoría</em> (educación, salud, etc.) y <em>Entidad</em> para acotar los resultados. También puedes filtrar por <em>Tipo de recurso</em> (mapa, gráfica, tabla).</p></div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-content"><h4>Previsualiza el conjunto</h4><p>Al abrir un conjunto de datos, verás una vista previa en tabla. Puedes ordenar, filtrar y explorar las columnas antes de descargar.</p></div></div>
+          <div class="step"><div class="step-num">4</div><div class="step-content"><h4>Verifica la actualización</h4><p>Revisa la fecha de la <em>última actualización</em> y la <em>frecuencia de actualización</em>. Para diagnósticos, prioriza datos actualizados en los últimos 2 años.</p></div></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="datos-abiertos-descarga">
+        <div class="cards-grid">
+          <div class="card"><h4>📥 Formatos de exportación</h4><ul><li>CSV (más universal)</li><li>JSON y GeoJSON</li><li>Excel (.xls)</li><li>XML</li><li>KML/KMZ (geoespaciales)</li><li>Shapefile ZIP (ESRI)</li></ul></div>
+          <div class="card"><h4>🔌 API para datos en tiempo real</h4><p>Cada conjunto tiene un endpoint de API (Socrata/SODA). Útil para sistemas de seguimiento que necesiten datos siempre actualizados sin descargar archivos manualmente.</p></div>
+          <div class="card"><h4>📌 Cómo citar</h4><p>En la ficha del conjunto encontrarás el apartado de <em>Información adicional</em> con la entidad fuente, período y notas metodológicas. Úsalos para referenciar en tu propuesta.</p></div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="datos-abiertos-cooperacion">
+        <div class="highlight-box">
+          <h4>🤝 Aplicaciones en cooperación internacional</h4>
+          <ul>
+            <li><strong>Fuente de microdatos:</strong> accede a registros individuales de programas sociales para análisis de cobertura y brechas.</li>
+            <li><strong>Contratación pública (SECOP):</strong> para análisis de inversión pública en el área focal.</li>
+            <li><strong>Infraestructura social:</strong> descarga la ubicación georeferenciada de colegios, centros de salud y otros servicios para mapas de cobertura.</li>
+            <li><strong>Datos de UPRA:</strong> para proyectos agrícolas, accede a la frontera agrícola y vocación del suelo.</li>
+            <li><strong>Evidencia de brechas:</strong> construye visualizaciones comparativas entre el área de intervención y el promedio nacional.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="platform-section" id="portales-sectoriales">
+      <div class="section-title">Portales <span>sectoriales</span> de apoyo</div>
+      <p class="section-sub">No reemplazan las fichas operativas. Sirven cuando el diagnóstico necesita salud, biodiversidad o el agregado cartográfico del IGAC. SIAC ya tiene tutorial propio para ambiente, agua y licenciamiento.</p>
+      <div class="cards-grid">
+        <div class="card">
+          <h4>SISPRO — MinSalud</h4>
+          <p>Integra RUAF, RIPS y PILA. Es la línea base de salud pública y epidemiología municipal cuando TerriData no alcanza el detalle sociosanitario.</p>
+          <a class="platform-url" href="https://www.sispro.gov.co/" target="_blank" rel="noopener">sispro.gov.co</a>
+        </div>
+        <div class="card">
+          <h4>SiB Colombia — Instituto Humboldt</h4>
+          <p>Datos abiertos de especies y ecosistemas para bioeconomía y conservación. Complementa a SIAC cuando el argumento es biodiversidad, no solo vulnerabilidad hídrica.</p>
+          <a class="platform-url" href="https://sibcolombia.net/" target="_blank" rel="noopener">sibcolombia.net</a>
+        </div>
+        <div class="card">
+          <h4>MADS / SIAC</h4>
+          <p>Objetos territoriales legales, licenciamiento ambiental y vulnerabilidad hídrica. La ruta de navegación está en la ficha de SIAC.</p>
+          <a class="platform-url" href="#siac" onclick="navScrollTo('siac', document.querySelector('[data-target=siac]')); return false;">Ver ficha SIAC</a>
+        </div>
+        <div class="card">
+          <h4>Colombia en Mapas — IGAC</h4>
+          <p>Agrega catastro, riesgos, infraestructura y ortofotografías. Úsalo para el sustento físico; ICDE fija el estándar y Colombia OT valida el POT.</p>
+          <a class="platform-url" href="https://www.colombiaenmapas.gov.co/" target="_blank" rel="noopener">colombiaenmapas.gov.co</a>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ══════════════ ESTRATEGIA ══════════════ -->
+    <section class="platform-section" id="estrategia">
+      <div class="section-title">Cómo <span>combinar plataformas</span><br>en una propuesta de cooperación</div>
+      <p class="section-sub">Ninguna plataforma por sí sola cuenta toda la historia. La clave está en articular las fuentes para construir un argumento robusto.</p>
+
+      <div class="cards-grid" style="margin-bottom:28px;">
+        <div class="card">
+          <h4>📍 Paso 1: Diagnóstico territorial</h4>
+          <ul>
+            <li><strong>TerriData:</strong> indicadores socioeconómicos base</li>
+            <li><strong>SIAC:</strong> dimensión ambiental</li>
+            <li><strong>Datos Paz:</strong> contexto de conflicto/víctimas</li>
+            <li><strong>CIFFIT:</strong> capacidad fiscal del municipio</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>📐 Paso 2: Priorización territorial</h4>
+          <ul>
+            <li><strong>TerriData Triage:</strong> ranking de municipios por rezago</li>
+            <li><strong>ICDE:</strong> cartografía de delimitación</li>
+            <li><strong>Colombia OT:</strong> uso del suelo y POT</li>
+            <li><strong>MapaInversiones:</strong> inversión pública previa</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>🎯 Paso 3: Marco lógico</h4>
+          <ul>
+            <li><strong>ODS DANE:</strong> alineación con indicadores globales</li>
+            <li><strong>SisPT:</strong> articulación con PDT municipal</li>
+            <li><strong>TerriData:</strong> indicadores de resultado con línea base</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h4>📊 Paso 4: Sistema de seguimiento</h4>
+          <ul>
+            <li><strong>TerriData + ODS DANE:</strong> actualización periódica de indicadores</li>
+            <li><strong>MapaInversiones:</strong> seguimiento a ejecución presupuestal</li>
+            <li><strong>CIFFIT:</strong> evaluación de sostenibilidad fiscal</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="background:var(--col-surface2);border:1px solid var(--col-border);border-radius:var(--radius);overflow:hidden;margin-top:16px;">
+        <div style="padding:20px 24px;border-bottom:1px solid var(--col-border);">
+          <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:4px;">🗂️ Matriz de uso por tipo de proyecto</div>
+          <div style="font-size:13px;color:var(--col-muted);">Recomendación de plataformas según el enfoque del proyecto</div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead><tr><th>Tipo de proyecto</th><th>Plataformas prioritarias</th><th>Indicadores clave</th></tr></thead>
+            <tbody>
+              <tr><td>🌾 Desarrollo rural / Seguridad alimentaria</td><td>TerriData, Colombia OT, ICDE, Datos Abiertos (UPRA)</td><td>IPM rural, uso del suelo, frontera agrícola</td></tr>
+              <tr><td>🕊️ Construcción de paz / Víctimas</td><td>Datos Paz, TerriData, MapaInversiones, SisPT</td><td>Víctimas por hecho, IGED, inversión post-conflicto</td></tr>
+              <tr><td>🌿 Medio ambiente / Cambio climático</td><td>SIAC, ICDE, ODS DANE, Datos Abiertos</td><td>Deforestación, cobertura boscosa, ODS 13/15</td></tr>
+              <tr><td>🏫 Educación / Primera infancia</td><td>TerriData, SisPT, ODS DANE, Datos Abiertos</td><td>Cobertura educativa, deserción, ODS 4</td></tr>
+              <tr><td>💧 Agua y saneamiento (WASH)</td><td>SIAC, TerriData, Datos Abiertos, ODS DANE</td><td>Acceso a agua potable, saneamiento, ODS 6</td></tr>
+              <tr><td>🏛️ Fortalecimiento institucional</td><td>CIFFIT, SisPT, Colombia OT, MapaInversiones</td><td>IDF, estado del POT, ejecución presupuestal</td></tr>
+              <tr><td>💼 Desarrollo económico local</td><td>TerriData, MapaInversiones, Datos Abiertos, CIFFIT</td><td>Pobreza, informalidad, inversión pública</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div style="background:var(--col-surface2);border:1px solid var(--col-border);border-radius:var(--radius);overflow:hidden;margin-top:22px;">
+        <div style="padding:20px 24px;border-bottom:1px solid var(--col-border);">
+          <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:4px;">Matriz de interoperabilidad para la formulación</div>
+          <div style="font-size:13px;color:var(--col-muted);">Combina el stack nacional con el idioma del cooperante. La receta cambia según a quién se le presenta el proyecto.</div>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="data-table">
+            <thead><tr><th>Temática del proyecto</th><th>Stack nacional</th><th>Stack internacional</th><th>Métrica clave</th></tr></thead>
+            <tbody>
+              <tr><td>Paz y víctimas</td><td>Datos Paz + TerriData</td><td>UNDP Data Futures + WDI</td><td>IGED, IDH</td></tr>
+              <tr><td>Salud y social</td><td>SISPRO + IPM DANE</td><td>BID SIMS + UNDP</td><td>Cobertura RUAF, brecha de empleo</td></tr>
+              <tr><td>Resiliencia climática</td><td>MADS + SiB + Colombia en Mapas</td><td>UN-Habitat + OECD Local Data</td><td>OTL, ODS 13/15</td></tr>
+              <tr><td>Gobernanza</td><td>CIFFIT + Colombia OT</td><td>OECD Government at a Glance</td><td>IDF, descentralización</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tip-box" style="margin-top:28px;">
+        <h4>💡 Consejo final: construye una narrativa de datos</h4>
+        <p>Los mejores proyectos no solo citan números: construyen una historia coherente. Empieza con el contexto nacional (ODS DANE), baja al nivel territorial (TerriData, Datos Paz), muestra dónde está el rezago (mapas de calor y priorización), demuestra que hay capacidad local (SisPT, CIFFIT), y propone indicadores medibles con línea base oficial. Esa cadena de evidencia, respaldada por fuentes institucionales, es lo que convence a los donantes.</p>
+      </div>
+
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="platform-section" id="validacion-global">
+      <div class="section-title">Validación <span>global</span></div>
+      <p class="section-sub">Los datos internacionales no sustituyen a los locales: los vuelven comparables para un donante en Washington, Ginebra o un banco multilateral.</p>
+      <div class="cards-grid">
+        <div class="card">
+          <h4>OCDE</h4>
+          <p><strong>Local Data Portal:</strong> más de 100 indicadores territoriales de economía, clima y vivienda. <strong>Government at a Glance:</strong> descentralización fiscal y calidad de los servicios, para mostrar debilidades locales como oportunidad de inversión.</p>
+          <a class="platform-url" href="https://www.oecd.org/regional/" target="_blank" rel="noopener">oecd.org/regional</a>
+        </div>
+        <div class="card">
+          <h4>ONU</h4>
+          <p><strong>ODS-DANE</strong> mide el avance de Colombia en la Agenda 2030. <strong>UNDP Data Futures</strong> da el contexto de IDH e IPM global. <strong>UN-Habitat</strong> aporta indicadores urbanos del ODS 11: asentamientos informales y resiliencia.</p>
+          <a class="platform-url" href="https://data.undp.org/" target="_blank" rel="noopener">data.undp.org</a>
+        </div>
+        <div class="card">
+          <h4>BID</h4>
+          <p>Números para el Desarrollo, SIMS (mercado laboral) e InfraLatam (brechas de infraestructura) para empleo, conectividad y género en la región.</p>
+          <a class="platform-url" href="https://data.iadb.org/" target="_blank" rel="noopener">data.iadb.org</a>
+        </div>
+        <div class="card">
+          <h4>Banco Mundial</h4>
+          <p>World Development Indicators: la serie armonizada para comparaciones macro que los préstamos de gran escala suelen exigir.</p>
+          <a class="platform-url" href="https://data.worldbank.org/" target="_blank" rel="noopener">data.worldbank.org</a>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="platform-section" id="guion">
+      <div class="section-title">Guion para el <span>defensor de la evidencia</span></div>
+      <p class="section-sub">Tres balas para abrir y tres respuestas cuando el comité pregunta por escala, vigencia y microdatos.</p>
+      <div class="cards-grid" style="margin-bottom:18px;">
+        <div class="card"><h4>Oficialidad</h4><p>Los datos salen del DNP, el DANE y el IGAC. Esa línea base es la que el Estado colombiano puede reconocer durante la ejecución.</p></div>
+        <div class="card"><h4>Estándar geoespacial</h4><p>La cartografía usa WMS/WFS de la ICDE en EPSG:9377, de modo que el donante puede montarla en su propio monitoreo.</p></div>
+        <div class="card"><h4>Transparencia activa</h4><p>MapaInversiones muestra la inversión pública previa. Sirve para evitar duplicar obras y para argumentar complementariedad.</p></div>
+      </div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><div class="step-content"><h4>¿Y si la escala nacional no alcanza para un predio?</h4><p>Los SIT nacionales sirven para la planificación estratégica. En el predio se consulta el catastro en Colombia en Mapas. Si el dato está bajo reserva legal, la solicitud formal va al Ministerio de Defensa, con copia del protocolo del IGAC en contactenos@igac.gov.co.</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-content"><h4>¿Cómo saben que el dato no está viejo?</h4><p>TerriData y SISPRO se alimentan de registros administrativos continuos, no solo del censo. Se usa el dato oficial más reciente del repositorio central del Estado.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-content"><h4>¿Por qué no usar microdatos de víctimas?</h4><p>La reserva legal y la protección de población vulnerable restringen ese acceso en Datos Paz. El agregado municipal alcanza para formular y para los indicadores de goce efectivo de derechos (IGED).</p></div></div>
+      </div>
+      <div class="tip-box">
+        <h4>Cierre</h4>
+        <p>El formulador arma evidencia: toma el ecosistema territorial y lo convierte en un proyecto financiable, sostenible y difícil de discutir en lo técnico.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+</div>
+
+<div id="deck" aria-hidden="true">
+  <div class="deck-stage">
+    <article class="slide slide-cover active" data-guide="intro">
+      <div class="slide-grid g2" style="align-items:center;">
+        <div>
+          <p class="slide-kicker">Cooperación internacional</p>
+          <h2>El Plano de la Evidencia: de la realidad local al impacto global</h2>
+          <p class="lede">Actualización de la guía de sistemas de información territorial para la cooperación internacional.</p>
+          <p>Presentado para agencias de cooperación y formuladores de proyectos.</p>
+        </div>
+        <svg class="map-svg" viewBox="0 0 220 280" aria-hidden="true">
+          <path d="M118 18c18 8 28 28 24 48 16 6 28 24 22 46 14 18 8 42-8 58 10 22 2 48-18 62 6 24-12 48-36 52-22 4-40-16-42-36-16-8-28-28-22-48-12-16-8-40 10-54-2-22 8-40 28-52 8-16 24-24 42-16z" fill="none" stroke="#1a2332" stroke-width="2"/>
+          <circle cx="108" cy="78" r="4" fill="#0969da"/><circle cx="96" cy="120" r="4" fill="#0969da"/><circle cx="124" cy="150" r="4" fill="#0969da"/><circle cx="100" cy="188" r="4" fill="#0969da"/>
+        </svg>
+      </div>
+    </article>
+
+    <article class="slide" data-guide="intro">
+      <h2>La cooperación ya no financia intuiciones</h2>
+      <div class="slide-grid g2">
+        <div class="s-card past"><h3>El pasado: buenas intenciones</h3><p>Las propuestas basadas en intuición y narrativas abstractas se rechazan con más facilidad. El donante no financia el propósito: financia la evidencia que lo sostiene.</p></div>
+        <div class="s-card future"><h3>El presente: cadena de valor de la evidencia</h3><p>Los donantes piden rigor empírico y anclaje territorial. El dato oficial baja el riesgo percibido de la partida.</p></div>
+      </div>
+      <div class="banner">El sistema de información territorial es el lenguaje de la cooperación moderna. Tres pilares verificables: <strong>priorización territorial</strong>, <strong>líneas base oficiales</strong> y <strong>sostenibilidad institucional</strong>.</div>
+    </article>
+
+    <article class="slide" data-guide="cadena-fases">
+      <h2>El tech stack de la evidencia territorial</h2>
+      <p class="lede">Tres capas. La de abajo alimenta el diagnóstico; la del medio ordena la formulación; la de arriba habla el idioma del donante.</p>
+      <div class="slide-grid" style="gap:12px;">
+        <div class="s-card layer c-top"><h3>Capa 3 · Validación global</h3><p>Estándares para hablar con un cooperante en Washington o Ginebra.</p><div class="pill-row"><span class="pill">OCDE</span><span class="pill">ONU</span><span class="pill">BID</span><span class="pill">Banco Mundial</span></div></div>
+        <div class="s-card layer c-mid"><h3>Capa 2 · Las 5 fases del formulador</h3><p>El embudo para diagnosticar, priorizar y anclar el proyecto.</p><div class="pill-row"><span class="pill">TerriData</span><span class="pill">SISPRO</span><span class="pill">DANE</span><span class="pill">Datos Paz</span><span class="pill">Colombia OT</span><span class="pill">ICDE</span><span class="pill">SisPT</span><span class="pill">CIFFIT</span></div></div>
+        <div class="s-card layer c-base"><h3>Capa 1 · Motores crudos nacionales</h3><p>CSV, API y registros de biodiversidad y clima cuando el tablero no alcanza.</p><div class="pill-row"><span class="pill">datos.gov.co</span><span class="pill">MADS</span><span class="pill">SiB Colombia</span></div></div>
+      </div>
+    </article>
+
+    <article class="slide" data-guide="terridata">
+      <p class="slide-kicker">Fase 1</p>
+      <h2>El punto de partida del diagnóstico integral</h2>
+      <p class="lede">Ninguna propuesta avanza sin un perfilamiento territorial consolidado.</p>
+      <div class="slide-grid g2">
+        <div class="s-card"><h3>TerriData (DNP)</h3><p>Consolida las dimensiones económicas, sociales y ambientales de los 1.102 municipios. Entrega el triage poblacional y las comparaciones históricas.</p></div>
+        <div class="s-card"><h3>SISPRO (MinSalud)</h3><p>Refuerza la línea base sociosanitaria con RIPS, RUAF y PILA: epidemiología y financiamiento del sector salud.</p></div>
+      </div>
+    </article>
+
+    <article class="slide" data-guide="datos-paz">
+      <p class="slide-kicker">Fase 2</p>
+      <h2>Identificación de brechas y priorización</h2>
+      <p class="lede">La pobreza general no le dice al financiador qué carencia concreta va a atacar el proyecto, ni cuál es la urgencia humanitaria.</p>
+      <div class="slide-grid g2">
+        <div class="s-card"><h3>IPM DANE</h3><p>Mide privaciones exactas: hacinamiento, agua, rezago escolar, materiales de la vivienda. Precisa la intervención.</p></div>
+        <div class="s-card"><h3>Datos Paz (UARIV)</h3><p>Integra el Registro Único de Víctimas y el modelo MITI. Justifica la intervención por justicia reparativa en los 170 municipios PDET, con los IGED.</p></div>
+      </div>
+    </article>
+
+    <article class="slide" data-guide="icde">
+      <p class="slide-kicker">Fase 3</p>
+      <h2>Anclaje físico y viabilidad geoespacial</h2>
+      <p class="lede">Todo proyecto ocurre en el espacio. Sin anclaje normativo territorial es un riesgo que el donante no debería aceptar.</p>
+      <div class="slide-grid g3">
+        <div class="s-card"><h3>1. ICDE</h3><p>Infraestructura de datos espaciales. Cartografía en estándares multilaterales, WMS/WFS y origen nacional EPSG:9377.</p></div>
+        <div class="s-card"><h3>2. Colombia OT</h3><p>Valida la norma de uso del suelo y los objetivos territoriales legales frente al POT local.</p></div>
+        <div class="s-card"><h3>3. Colombia en Mapas</h3><p>Agrega catastro, riesgos, infraestructura y ortofotografías para el sustento físico del predio y del municipio.</p></div>
+      </div>
+    </article>
+
+    <article class="slide" data-guide="ciffit">
+      <p class="slide-kicker">Fase 4</p>
+      <h2>Sostenibilidad institucional y fiscal</h2>
+      <p class="lede">La evidencia de que el proyecto perdura: respaldo del plan de desarrollo y capacidad real de contrapartida.</p>
+      <div class="flow">
+        <div class="s-card"><h3>Presupuesto del proyecto</h3><p>La inversión que se va a defender ante el comité.</p></div>
+        <div class="flow-arrow">→</div>
+        <div class="s-card"><h3>SisPT (DNP)</h3><p>Articula los objetivos con el Plan de Desarrollo Territorial de la alcaldía. Sin esa cruce, no hay respaldo político ni presupuestal de largo plazo.</p></div>
+        <div class="flow-arrow">→</div>
+        <div class="s-card"><h3>CIFFIT (DNP)</h3><p>Evalúa el IDF: Sostenible, Solvente, Vulnerable, Riesgo o Deterioro. En Riesgo o Deterioro, la sostenibilidad no puede depender de la contrapartida local.</p></div>
+      </div>
+    </article>
+
+    <article class="slide" data-guide="datos-abiertos">
+      <p class="slide-kicker">Fase 5</p>
+      <h2>Materia prima y temática ambiental</h2>
+      <p class="lede">Cuando el tablero predefinido no alcanza y hace falta cruzar registros crudos o argumentar el ecosistema.</p>
+      <div class="slide-grid g3">
+        <div class="s-card"><h3>datos.gov.co</h3><p>Ley 1712 de 2014. API Socrata/SODA, CSV y JSON para cruces que ningún visor estándar publica.</p></div>
+        <div class="s-card"><h3>MADS / SIAC</h3><p>Objetos territoriales legales, gestión hídrica y licenciamiento ambiental.</p></div>
+        <div class="s-card"><h3>SiB Colombia</h3><p>Evidencia de especies y biodiversidad para conservación y bioeconomía.</p></div>
+      </div>
+    </article>
+
+    <article class="slide" data-guide="validacion-global">
+      <p class="slide-kicker">Validación global I</p>
+      <h2>El idioma de la OCDE</h2>
+      <p class="lede">Para fondos de países de ingreso alto, el dato local tiene que enmarcarse en estándares de gobernanza.</p>
+      <div class="bars">
+        <div class="bar-row"><span>Calidad de servicios</span><div class="bar-track"><div class="bar-fill" style="width:62%"></div><span class="bar-mark" style="left:88%"></span></div></div>
+        <div class="bar-row"><span>Descentralización</span><div class="bar-track"><div class="bar-fill" style="width:58%"></div><span class="bar-mark" style="left:84%"></span></div></div>
+        <div class="bar-row"><span>Inversión subnacional</span><div class="bar-track"><div class="bar-fill" style="width:74%"></div><span class="bar-mark" style="left:90%"></span></div></div>
+      </div>
+      <div class="slide-grid g2">
+        <div class="s-card"><h3>OECD Local Data Portal</h3><p>Más de 100 indicadores territoriales comparables en economía, clima y vivienda.</p></div>
+        <div class="s-card"><h3>Government at a Glance</h3><p>Descentralización fiscal estandarizada. Convierte una debilidad institucional en una oportunidad de inversión.</p></div>
+      </div>
+    </article>
+
+    <article class="slide" data-guide="validacion-global">
+      <p class="slide-kicker">Validación global II</p>
+      <h2>Alineación con agendas de la ONU</h2>
+      <p class="lede">Un problema local se presenta como contribución a una meta global que el donante ya financió en otros países.</p>
+      <div class="slide-grid g3">
+        <div class="s-card"><h3>ODS 6</h3><p>Agua y saneamiento. La ficha oficial de avance está en ODS-DANE.</p></div>
+        <div class="s-card"><h3>ODS 5</h3><p>Igualdad de género, cuando la privación o la victimización tiene rostro diferencial.</p></div>
+        <div class="s-card"><h3>ODS 11</h3><p>Ciudades y comunidades sostenibles. UN-Habitat aporta asentamientos informales y resiliencia.</p></div>
+      </div>
+      <div class="banner">UNDP Data Futures da el contexto de IDH e IPM global. No reemplaza el IPM del DANE: lo sitúa frente al mundo.</div>
+    </article>
+
+    <article class="slide" data-guide="validacion-global">
+      <p class="slide-kicker">Validación global III</p>
+      <h2>Cohesión regional: BID y Banco Mundial</h2>
+      <p class="lede">Para integración, infraestructura y desarrollo económico ante la banca multilateral.</p>
+      <div class="slide-grid g2">
+        <div class="s-card"><h3>BID Open Data</h3><p>SIMS para mercado laboral e InfraLatam para inversión en infraestructura. Sirven para brechas de empleo, conectividad y género a escala regional.</p></div>
+        <div class="s-card"><h3>World Bank Open Data</h3><p>World Development Indicators: el repositorio armonizado para el análisis macro que exigen los préstamos de gran escala.</p></div>
+      </div>
+    </article>
+
+    <article class="slide" data-guide="caso-practico">
+      <p class="slide-kicker">Caso</p>
+      <h2>Resiliencia en el Chocó</h2>
+      <p class="lede">Cuatro eslabones, de la necesidad local al perfil que un donante puede financiar.</p>
+      <div class="flow">
+        <div class="s-card"><h3>1. Necesidad</h3><p>TerriData y SISPRO. Mortalidad infantil 3 veces el promedio nacional. Acceso a agua: 45%.</p></div>
+        <div class="flow-arrow">→</div>
+        <div class="s-card"><h3>2. Brecha exacta</h3><p>IPM y Datos Paz. 58% de privación en material de paredes. 22 de 30 municipios son PDET.</p></div>
+        <div class="flow-arrow">→</div>
+        <div class="s-card"><h3>3. Riesgo ecosistémico</h3><p>MADS, SiB y Colombia en Mapas. Vulnerabilidad hídrica muy alta y +15% de precipitación.</p></div>
+        <div class="flow-arrow">→</div>
+        <div class="s-card"><h3>4. Justificación global</h3><p>UNDP y OCDE. Alineación con el ODS 11 y con métricas de resiliencia del OECD Local Data.</p></div>
+      </div>
+    </article>
+
+    <article class="slide" data-guide="estrategia">
+      <h2>Matriz de interoperabilidad para la formulación</h2>
+      <table class="deck-table">
+        <thead><tr><th>Temática</th><th>Stack nacional</th><th>Stack internacional</th><th>Métrica</th></tr></thead>
+        <tbody>
+          <tr><td>Paz y víctimas</td><td>Datos Paz + TerriData</td><td>UNDP Data Futures + WDI</td><td>IGED, IDH</td></tr>
+          <tr><td>Salud y social</td><td>SISPRO + IPM DANE</td><td>BID SIMS + UNDP</td><td>Cobertura RUAF, brecha de empleo</td></tr>
+          <tr><td>Resiliencia climática</td><td>MADS + SiB + Colombia en Mapas</td><td>UN-Habitat + OECD Local Data</td><td>OTL, ODS 13/15</td></tr>
+          <tr><td>Gobernanza</td><td>CIFFIT + Colombia OT</td><td>OECD Government at a Glance</td><td>IDF, descentralización</td></tr>
+        </tbody>
+      </table>
+      <div class="banner">La receta del formulador: combine portales según el tipo de cooperante al que se enfrenta.</div>
+    </article>
+
+    <article class="slide" data-guide="estrategia">
+      <h2>El ecosistema SIT consolidado</h2>
+      <div class="quad">
+        <div class="s-card" style="grid-column:1;grid-row:1"><h3>Internacional</h3><p>OCDE, ONU (UNDP, UN-Habitat), BID y Banco Mundial.</p></div>
+        <div class="quad-center">Proyecto financiable</div>
+        <div class="s-card" style="grid-column:3;grid-row:1"><h3>Geoespacial y OT</h3><p>ICDE, Colombia OT y Colombia en Mapas.</p></div>
+        <div class="s-card" style="grid-column:1;grid-row:2"><h3>Ambiental</h3><p>MADS, SiB Colombia y SIAC.</p></div>
+        <div class="s-card" style="grid-column:3;grid-row:2"><h3>Socioeconómico y paz</h3><p>TerriData, SISPRO, DANE, Datos Paz, SisPT y CIFFIT.</p></div>
+      </div>
+    </article>
+
+    <article class="slide slide-cover" data-guide="guion">
+      <h2>El impacto global comienza con la evidencia local</h2>
+      <p class="lede">Los datos territoriales y el benchmarking internacional no son un anexo. Son los cimientos que convierten una buena idea en una intervención financiada, sostenible y verificable.</p>
+      <p>El ecosistema está abierto. El siguiente proyecto empieza en la guía.</p>
+    </article>
+  </div>
+  <button type="button" class="deck-arrow prev" id="deck-prev" aria-label="Lámina anterior">‹</button>
+  <button type="button" class="deck-arrow next" id="deck-next" aria-label="Lámina siguiente">›</button>
+  <div class="deck-footer">
+    <span id="deck-count">1 / 15</span>
+    <button type="button" class="deck-link" id="deck-to-guide">Ver en la guía</button>
+  </div>
+</div>
+
+<script>
+function switchTab(platformId, tabName) {
+  // Hide all panels for this platform
+  const panels = document.querySelectorAll(`[id^="${platformId}-"]`);
+  panels.forEach(p => p.classList.remove('active'));
+
+  // Remove active from all buttons in this platform's tab group
+  const tabGroup = document.getElementById(`tabs-${platformId}`);
+  tabGroup.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+
+  // Show selected panel and activate button
+  const panel = document.getElementById(`${platformId}-${tabName}`);
+  if (panel) panel.classList.add('active');
+
+  // Find and activate the clicked button
+  const btns = tabGroup.querySelectorAll('.tab-btn');
+  btns.forEach(b => {
+    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(`'${tabName}'`)) {
+      b.classList.add('active');
+    }
+  });
+}
+
+function navScrollTo(id, navItem) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (navItem) navItem.classList.add('active');
+}
+
+const sections = document.querySelectorAll('#guide .platform-section');
+const navItems = document.querySelectorAll('.nav-item[data-target]');
+
+const observer = new IntersectionObserver((entries) => {
+  if (document.body.classList.contains('deck-mode')) return;
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navItems.forEach(n => {
+        n.classList.toggle('active', n.dataset.target === id);
+      });
+    }
+  });
+}, { threshold: 0.2, rootMargin: '-60px 0px -55% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+const slides = Array.from(document.querySelectorAll('#deck .slide'));
+let slideIndex = 0;
+
+function renderSlide() {
+  slides.forEach((slide, i) => slide.classList.toggle('active', i === slideIndex));
+  const count = document.getElementById('deck-count');
+  if (count) count.textContent = (slideIndex + 1) + ' / ' + slides.length;
+  document.body.classList.toggle('on-cover', slides[slideIndex].classList.contains('slide-cover'));
+}
+
+function stepSlide(delta) {
+  slideIndex = Math.max(0, Math.min(slides.length - 1, slideIndex + delta));
+  renderSlide();
+}
+
+function showDeck(index) {
+  if (typeof index === 'number') slideIndex = index;
+  document.body.classList.add('deck-mode');
+  document.getElementById('deck').setAttribute('aria-hidden', 'false');
+  document.getElementById('btn-deck').classList.add('active');
+  document.getElementById('btn-guide').classList.remove('active');
+  renderSlide();
+}
+
+function showGuide(id) {
+  const target = id || (slides[slideIndex] && slides[slideIndex].dataset.guide) || 'intro';
+  document.body.classList.remove('deck-mode', 'on-cover');
+  document.getElementById('deck').setAttribute('aria-hidden', 'true');
+  document.getElementById('btn-guide').classList.add('active');
+  document.getElementById('btn-deck').classList.remove('active');
+  const nav = document.querySelector('.nav-item[data-target="' + target + '"]');
+  requestAnimationFrame(() => navScrollTo(target, nav));
+}
+
+function applyTheme(theme) {
+  const next = theme === 'light' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  try { localStorage.setItem('sit-theme', next); } catch (e) {}
+  const btn = document.getElementById('btn-theme');
+  const isLight = next === 'light';
+  btn.textContent = isLight ? 'Día' : 'Noche';
+  btn.title = isLight ? 'Cambiar a modo noche' : 'Cambiar a modo día';
+  btn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+}
+
+applyTheme(document.documentElement.getAttribute('data-theme') || 'dark');
+
+document.getElementById('btn-theme').addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme');
+  applyTheme(current === 'light' ? 'dark' : 'light');
+});
+document.getElementById('btn-deck').addEventListener('click', () => showDeck());
+document.getElementById('btn-guide').addEventListener('click', () => showGuide());
+document.getElementById('deck-prev').addEventListener('click', () => stepSlide(-1));
+document.getElementById('deck-next').addEventListener('click', () => stepSlide(1));
+document.getElementById('deck-to-guide').addEventListener('click', () => showGuide());
+document.querySelector('.deck-stage').addEventListener('click', (event) => {
+  if (event.target.closest('a, button')) return;
+  const rect = event.currentTarget.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  if (x < rect.width * 0.18) stepSlide(-1);
+  else if (x > rect.width * 0.82) stepSlide(1);
+});
+document.addEventListener('keydown', (event) => {
+  if (!document.body.classList.contains('deck-mode')) return;
+  if (event.key === 'ArrowRight' || event.key === 'PageDown') { event.preventDefault(); stepSlide(1); }
+  else if (event.key === 'ArrowLeft' || event.key === 'PageUp') { event.preventDefault(); stepSlide(-1); }
+  else if (event.key === 'Home') { event.preventDefault(); slideIndex = 0; renderSlide(); }
+  else if (event.key === 'End') { event.preventDefault(); slideIndex = slides.length - 1; renderSlide(); }
+  else if (event.key === 'Escape') { event.preventDefault(); showGuide(); }
+});
+</script>
+</body>
+</html>
